@@ -7,7 +7,7 @@ function Header() {
             <div className=" flex flex-row justify-center items-center">
                 <img src={image} alt="aaa" className="w-28 h-28 " />
                 <h2 className="font-bold text-5xl ml-4 text-green-500">GreenGo</h2>
-            </div >
+            </div>
             <div className='flex justify-center md:flex flex-wrap text-base py-3 lg:mr-10'>
                 <ul className='flex flex-row gap-5 font-bold text-green-800 text-xl'>
                     <Link to={'/'} className=' hover:text-orange-300 focus:underline focus:decoration-orange-400 transition-all '>Home</Link>
