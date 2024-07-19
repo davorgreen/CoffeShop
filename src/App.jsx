@@ -12,6 +12,9 @@ import Contact from './pages/Contact';
 import AboutUs from './pages/AboutUs';
 import Blog from './pages/Blog';
 import NotFoundPage from './pages/NotFoundPage';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 
 function App() {
 

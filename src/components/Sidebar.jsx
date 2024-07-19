@@ -13,6 +13,7 @@ function Sidebar({ isActive, closedSidebar }) {
                         <span className="absolute top-0 right-0 p-4" onClick={closedSidebar}>
                             <ImCross />
                         </span>
+                        <div className="text-3xl font-bold uppercase">Empty Cart</div>
                     </div>
                 </div>
             </div>

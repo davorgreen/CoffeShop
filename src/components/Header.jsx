@@ -18,7 +18,7 @@ function Header() {
 
     }
     return (
-        <div className="container mx-auto flex-col items-center md:shadow-2xl md:flex md:justify-between md:flex-row md:bg-green-300 md:h-0 lg:w-10/12 lg:h-28">
+        <div className="container mx-auto flex flex-col items-center md:shadow-2xl md:flex md:justify-between md:flex-row md:bg-green-300 md:h-0 lg:w-10/12 lg:h-28">
             <div className=" flex flex-row justify-center items-center">
                 <img src={image} alt="aaa" className="w-28 h-28 " />
                 <h2 className="font-bold text-5xl ml-4 text-green-500">GreenGo</h2>
@@ -43,12 +43,15 @@ function Header() {
 
                 <Link>
                     <MdOutlineShoppingCart size={28} color='green' onClick={toggleSidebar} />
+                    <div className='relative'>
+                        <span className='absolute right-0 bottom-6  text-white'>0</span>
+                    </div>
                 </Link>
-            </div>
+            </div >
             <div>
                 <Sidebar isActive={isActive} closedSidebar={toggleSidebar} />
             </div>
-        </div>
+        </div >
     )
 }
 

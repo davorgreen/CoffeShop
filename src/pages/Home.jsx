@@ -1,8 +1,13 @@
+import SimpleSlider from "../components/SimpleSlider"
+
+
 
 
 function Home() {
     return (
-        <div>Home</div>
+        <div className="">
+            <SimpleSlider />
+        </div>
     )
 }
 
