@@ -6,7 +6,7 @@ function Footer() {
         <div>
             <div className="bg-green-300">
                 <div className="w-10/12 m-auto">
-                    <div className="flex justify-between py-14 gap-8">
+                    <div className="flex flex-col justify-center items-center pt-5 gap-3 md:items-start  md:flex-row md:py-14 ">
                         {
                             footer.map((el, index) => {
                                 return <> <div key={index} className="w-2/6">

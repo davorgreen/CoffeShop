@@ -18,12 +18,12 @@ function Header() {
 
     }
     return (
-        <div className="container mx-auto flex flex-col items-center md:shadow-2xl md:flex md:justify-between md:flex-row md:bg-green-300 md:h-0 lg:w-10/12 lg:h-28">
-            <div className=" flex flex-row justify-center items-center">
+        <div className="container mx-auto items-center md:shadow-2xl lg:flex lg:justify-between md:bg-green-300 md:h-40 lg:w-10/12 lg:h-28">
+            <div className="flex flex-row  justify-center items-center">
                 <img src={image} alt="aaa" className="w-28 h-28 " />
                 <h2 className="font-bold text-5xl ml-4 text-green-500">GreenGo</h2>
             </div>
-            <div className='flex justify-center md:flex flex-wrap text-base py-3 lg:mr-10'>
+            <div className='flex justify-center md:flex flex-wrap text-base py-3 lg:ml-6'>
                 <ul className='flex flex-row gap-5 font-bold text-green-800 text-xl'>
                     <Link to={'/'} className=' hover:text-orange-300 focus:underline focus:decoration-orange-400 transition-all '>Home</Link>
                     <Link to={'/shop'} className=' hover:text-orange-300 focus:underline focus:decoration-orange-400 transition-all '>Shop</Link>
@@ -32,7 +32,7 @@ function Header() {
                     <Link to={'/contact'} className=' hover:text-orange-300 focus:underline focus:decoration-orange-400 transition-all '>Contact Us</Link>
                 </ul>
             </div>
-            <div className='flex gap-5 mr-5 justify-center'>
+            <div className='flex gap-5 mr-5 justify-center mt-5 md:mt-0'>
                 <Link>
                     <FaRegHeart size={28} color='green' />
                 </Link>
@@ -44,7 +44,7 @@ function Header() {
                 <Link>
                     <MdOutlineShoppingCart size={28} color='green' onClick={toggleSidebar} />
                     <div className='relative'>
-                        <span className='absolute right-0 bottom-6  text-white'>0</span>
+                        <span className='absolute left-5 bottom-6 flex items-center justify-center px-2 py-1 rounded-2xl bg-yellow-400 text-white font-bold'>0</span>
                     </div>
                 </Link>
             </div >
