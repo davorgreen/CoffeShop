@@ -3,7 +3,7 @@ export const footer = [
         id: 1,
         header: "Our Store",
         content1:
-            "Miniture is one of the biggest international fashion companies, one of the world’s largest distribution groups.",
+            "GreenGo is one of the biggest international coffee shop, one of the world’s largest distribution groups.",
     },
     {
         id: 2,
