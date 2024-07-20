@@ -1,7 +1,9 @@
+import axios from "axios";
 
 
-class ProductService {
 
-}
 
-export default ProductService;
+const base = axios.create({
+    baseURL: 'https://fake-coffee-api.vercel.app/api'
+})
+export default base;
