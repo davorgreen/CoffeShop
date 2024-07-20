@@ -10,6 +10,7 @@ import image6 from '../imgSlider/Coffee-Shop -in-Dubai-by-Amer-Shawa-011.jpg';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import '../index.css'
 
 
 export default function SimpleSlider() {
@@ -19,6 +20,7 @@ export default function SimpleSlider() {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
+
     };
 
     return (

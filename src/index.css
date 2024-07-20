@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.slick-next:before,
+.slick-prev:before {
+	content: '→';
+	color: green;
+}
+
+.slick-prev:before {
+	content: '←';
+	color: green;
+}
