@@ -2,18 +2,20 @@ import { useEffect, useState } from "react"
 import base from "../services/ProductService";
 import { ThreeCircles } from "react-loader-spinner";
 import CardComponent from "../components/CardComponent";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductHandler } from "../slices/ProductSlice";
 
 
 function Shop() {
-    const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
+    const dispatch = useDispatch();
+    const { allProducts } = useSelector((state) => state.productStore);
 
     useEffect(() => {
         setLoading(true)
         base.get().
-            then((res) => setData(res.data))
+            then((res) => dispatch(getProductHandler((res.data))))
             .catch((err) => setError(err.message))
             .finally(setLoading(false))
     }, []);
@@ -23,7 +25,7 @@ function Shop() {
     return (
         <div className="flex items-center justify-center min-h-screen">
             <div className="container mx-auto">
-                {data && data.length > 0 ? (<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">{data.map((item) => {
+                {allProducts && allProducts.length > 0 ? (<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">{allProducts.map((item) => {
                     return <CardComponent key={item.id} item={item} />
                 })}</div>) : (<div className="flex items-center justify-center min-h-screen"><ThreeCircles
                     visible={loading}
