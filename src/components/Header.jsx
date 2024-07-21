@@ -34,13 +34,14 @@ function Header() {
             </div>
             <div className='flex gap-5 mr-5 justify-center mt-5 md:mt-0'>
                 <Link>
-                    <FaRegHeart size={28} color='green' />
-                </Link>
-
-                <Link>
                     <FaRegUser size={28} color='green' />
                 </Link>
-
+                <Link>
+                    <FaRegHeart size={28} color='green' />
+                    <div className='relative'>
+                        <span className='absolute left-5 bottom-6 flex items-center justify-center px-2 py-1 rounded-2xl bg-yellow-400 text-white font-bold'>0</span>
+                    </div>
+                </Link>
                 <Link>
                     <MdOutlineShoppingCart size={28} color='green' onClick={toggleSidebar} />
                     <div className='relative'>
