@@ -2,6 +2,7 @@
 import { IoMdCloseCircle } from "react-icons/io";
 import { FaRegHeart } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 function Modal({ modalOpen, handleClose, item }) {
     const { name,
@@ -22,9 +23,9 @@ function Modal({ modalOpen, handleClose, item }) {
                     <div className="text-gray-700 font-bold">Weight: {weight}g</div>
                     <div className="text-gray-700 font-bold">Grind Option: <span className="underline">{grind_option}</span> </div>
                     <div className="text-gray-700 font-bold">Roast Level: <span className="font-bold">{roast_level}</span></div>
-                    <div className="flex gap-10">
-                        <span><FaRegHeart size={30} color="green" /></span>
-                        <span><MdOutlineShoppingCart size={30} color="green" /></span>
+                    <div className="flex gap-5">
+                        <button className="flex flex-row items-center gap-1 px-4 py-2 bg-green-400 text-white font-bold rounded-xl hover:text-green-900 hover:underline hover:bg-transparent "><Link>Add To Favorites</Link><FaRegHeart size={20} color="green" /></button>
+                        <button className="flex flex-row items-center gap-1 px-6 py-3 bg-green-400 text-white font-bold rounded-xl hover:text-green-900 hover:underline hover:bg-transparent "><Link>Add To Cart</Link><MdOutlineShoppingCart size={20} color="green" /></button>
                     </div>
                 </div>
             </div>)}</div>
