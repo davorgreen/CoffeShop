@@ -3,8 +3,15 @@ import { IoMdCloseCircle } from "react-icons/io";
 import { FaRegHeart } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../slices/CartSlice";
 
 function Modal({ modalOpen, handleClose, item }) {
+    const [qty, setQty] = useState(1);
+
+    const dispatch = useDispatch();
+
     const { name,
         price,
         region,
@@ -12,6 +19,25 @@ function Modal({ modalOpen, handleClose, item }) {
         flavor_profil,
         grind_option,
         roast_level, } = item;
+
+    const addItemToCart = (product) => {
+        let totalPrice = qty * product.price;
+        const tempProduct = {
+            ...product,
+            quantity: qty,
+            totalPrice,
+        }
+        dispatch(addToCart(tempProduct));
+    }
+
+    useEffect(() => {
+        if (modalOpen) {
+
+        } else {
+            setQty(1);
+        }
+    }, []);
+
     return (
         <div>{modalOpen && (
             <div className="absolute right-0 top-0 bottom-0 left-0 ">
@@ -25,7 +51,7 @@ function Modal({ modalOpen, handleClose, item }) {
                     <div className="text-gray-700 font-bold">Roast Level: <span className="font-bold">{roast_level}</span></div>
                     <div className="flex gap-5">
                         <button className="flex flex-row items-center gap-1 px-4 py-2 bg-green-400 text-white font-bold rounded-xl hover:text-green-900 hover:underline hover:bg-transparent "><Link>Add To Favorites</Link><FaRegHeart size={20} color="green" /></button>
-                        <button className="flex flex-row items-center gap-1 px-6 py-3 bg-green-400 text-white font-bold rounded-xl hover:text-green-900 hover:underline hover:bg-transparent "><Link>Add To Cart</Link><MdOutlineShoppingCart size={20} color="green" /></button>
+                        <button className="flex flex-row items-center gap-1 px-6 py-3 bg-green-400 text-white font-bold rounded-xl hover:text-green-900 hover:underline hover:bg-transparent " onClick={() => addItemToCart(item)}><Link to={'/cart'}>Add To Cart</Link><MdOutlineShoppingCart size={20} color="green" /></button>
                     </div>
                 </div>
             </div>)}</div>
