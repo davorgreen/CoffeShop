@@ -5,10 +5,11 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../slices/CartSlice";
+import { addToCart, getCartTotal, updateQuantity } from "../slices/CartSlice";
 
 function Modal({ modalOpen, handleClose, item }) {
     const [qty, setQty] = useState(1);
+    const [addedItemToCart, setAddedItemToCart] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -28,6 +29,8 @@ function Modal({ modalOpen, handleClose, item }) {
             totalPrice,
         }
         dispatch(addToCart(tempProduct));
+        dispatch(getCartTotal());
+        setAddedItemToCart(true);
     }
 
     useEffect(() => {
@@ -35,8 +38,21 @@ function Modal({ modalOpen, handleClose, item }) {
 
         } else {
             setQty(1);
+            setAddedItemToCart(false);
         }
-    }, []);
+    }, [modalOpen]);
+
+    /* const increaseQuantity = (itemId, currentQuantity) => {
+         const newQty = currentQuantity + 1;
+         setQty(newQty);
+         dispatch(updateQuantity({ id: itemId, quantity: newQty }));
+     }
+ 
+     const decreaseQuantity = (itemId, currentQuantity) => {
+         const newQty = Math.max(currentQuantity - 1, 1);
+         setQty(newQty);
+         dispatch(updateQuantity({ id: itemId, quantity: newQty }));
+     }*/
 
     return (
         <div>{modalOpen && (
@@ -51,7 +67,9 @@ function Modal({ modalOpen, handleClose, item }) {
                     <div className="text-gray-700 font-bold">Roast Level: <span className="font-bold">{roast_level}</span></div>
                     <div className="flex gap-5">
                         <button className="flex flex-row items-center gap-1 px-4 py-2 bg-green-400 text-white font-bold rounded-xl hover:text-green-900 hover:underline hover:bg-transparent "><Link>Add To Favorites</Link><FaRegHeart size={20} color="green" /></button>
-                        <button className="flex flex-row items-center gap-1 px-6 py-3 bg-green-400 text-white font-bold rounded-xl hover:text-green-900 hover:underline hover:bg-transparent " onClick={() => addItemToCart(item)}><Link to={'/cart'}>Add To Cart</Link><MdOutlineShoppingCart size={20} color="green" /></button>
+                        {addedItemToCart ? (<button className="flex flex-row items-center gap-1 px-6 py-3 bg-green-400 text-white font-bold rounded-xl hover:text-green-900 hover:underline hover:bg-transparent " onClick={() => addItemToCart(item)}><Link to={'/cart'}> View Cart</Link><MdOutlineShoppingCart size={20} color="green" /></button>) : (<button className="flex flex-row items-center gap-1 px-6 py-3 bg-green-400 text-white font-bold rounded-xl hover:text-green-900 hover:underline hover:bg-transparent " onClick={() => addItemToCart(item)}><Link to={'/cart'}> Add To Cart</Link><MdOutlineShoppingCart size={20} color="green" /></button>)}
+
+
                     </div>
                 </div>
             </div>)}</div>

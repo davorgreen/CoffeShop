@@ -44,4 +44,4 @@ function CardComponent({ item }) {
     )
 }
 
-export default CardComponent
+export default CardComponent;

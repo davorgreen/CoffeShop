@@ -5,7 +5,7 @@ function Sidebar({ isActive, closedSidebar }) {
     return (
         <div>
             <div>
-                <div style={{ transform: `translateX(${isActive ? '0%' : '100%'})` }} className="fixed top-0 right-0 bg-white shadow-lg h-full transition-transform duration-300 ease-out">
+                <div style={{ transform: `translateX(${isActive ? '0%' : '100%'})` }} className="fixed top-0 right-0 bg-white shadow-lg h-full transition-transform duration-300 ease-in-out overflow-y-auto z-50">
                     <div className="border-b m-4">
                         <h1 className="text-3xl p-4">Your Cart</h1>
                     </div>
