@@ -19,7 +19,7 @@ function Sidebar({ isActive, closedSidebar }) {
                         <span className="absolute top-0 right-0 p-4" onClick={closedSidebar}>
                             <ImCross />
                         </span>
-                        {cart ? (cart.map((item, index) => {
+                        {cart && cart.length > 0 ? (cart.map((item, index) => {
                             return <div className="" key={index}><Cart item={item} index={index} key={index} /></div>
                         })) : (<div className="text-3xl font-bold uppercase">Empty Cart</div>)}
 

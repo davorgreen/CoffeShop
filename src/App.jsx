@@ -13,6 +13,7 @@ import AboutUs from './pages/AboutUs';
 import Blog from './pages/Blog';
 import NotFoundPage from './pages/NotFoundPage';
 import 'slick-carousel/slick/slick.css';
+import FavoritesPage from './pages/FavoritesPage';
 
 
 
@@ -31,6 +32,7 @@ function App() {
           <Route path='/about' element={<AboutUs />} />
           <Route path='/blog' element={<Blog />} />
           <Route path='/*' element={<NotFoundPage />} />
+          <Route path='/favorites' element={<FavoritesPage />} />
         </Routes>
         <Footer />
       </Router>
