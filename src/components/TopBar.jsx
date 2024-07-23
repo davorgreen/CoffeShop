@@ -2,7 +2,7 @@
 
 function TopBar() {
     return (
-        <div>TopBar</div>
+        <div></div>
     )
 }
 

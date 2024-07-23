@@ -7,11 +7,13 @@ import { FaRegHeart, FaRegUser } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
 
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 
 
 function Header() {
     const [isActive, setIsActive] = useState(false);
+    const { totalProduct } = useSelector(state => state.cartStore);
 
     function toggleSidebar() {
         setIsActive(!isActive);
@@ -45,7 +47,7 @@ function Header() {
                 <Link>
                     <MdOutlineShoppingCart size={28} color='green' onClick={toggleSidebar} />
                     <div className='relative'>
-                        <span className='absolute left-5 bottom-6 flex items-center justify-center px-2 py-1 rounded-2xl bg-yellow-400 text-white font-bold'>0</span>
+                        <span className='absolute left-5 bottom-6 flex items-center justify-center px-2 py-1 rounded-2xl bg-yellow-400 text-white font-bold'>{totalProduct}</span>
                     </div>
                 </Link>
             </div >

@@ -1,7 +1,13 @@
 //icons
 import { ImCross } from "react-icons/im";
+import { useSelector } from "react-redux";
+
+import CartProductComponent from "./CartProductComponent";
+import Cart from "../pages/Cart";
+
 
 function Sidebar({ isActive, closedSidebar }) {
+    const { cart } = useSelector((state) => state.cartStore)
     return (
         <div>
             <div>
@@ -13,7 +19,10 @@ function Sidebar({ isActive, closedSidebar }) {
                         <span className="absolute top-0 right-0 p-4" onClick={closedSidebar}>
                             <ImCross />
                         </span>
-                        <div className="text-3xl font-bold uppercase">Empty Cart</div>
+                        {cart ? (cart.map((item, index) => {
+                            return <div className="" key={index}><Cart item={item} index={index} key={index} /></div>
+                        })) : (<div className="text-3xl font-bold uppercase">Empty Cart</div>)}
+
                     </div>
                 </div>
             </div>

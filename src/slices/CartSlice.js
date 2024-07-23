@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-function storeInLocalStorage(cart) {
+/*function storeInLocalStorage(cart) {
     localStorage.setItem("cart", JSON.stringify(cart))
-}
+}*/
 
 const CartSlice = createSlice({
     name: 'cart',
@@ -14,37 +14,63 @@ const CartSlice = createSlice({
     },
     reducers: {
         addToCart: (state, action) => {
-            const currentProduct = state.cart.find((product) => product.id === action.payload.id);
-
-            if (currentProduct) {
-                const tempCart = state.data.map((product) => {
-                    if (product.id === action.payload.id) {
-                        let newQty = product.quantity + action.payload.quantity;
-                        let newTotalPrice = newQty * product.price;
+            console.log(action.payload)
+            let copyArray = [...state.cart];
 
 
-                        return {
-                            ...product,
-                            quantity: newQty,
-                            totalPrice: newTotalPrice,
-                        };
-                    } else {
-                        return product;
-                    }
-                })
-                state.cart = tempCart;
-                storeInLocalStorage(state.cart);
+            let findIndex = null;
+
+            copyArray.find((item, index) => {
+                if (item.id === action.payload.id) {
+                    findIndex = index;
+                    return;
+                }
+            })
+            if (findIndex === null) {
+                copyArray.push({ ...action.payload, count: 1, cartTotal: action.payload.price });
+                state.totalPrice += action.payload.price;
+                state.totalProduct++;
+            } else {
+                copyArray[findIndex].count++;
             }
-            else {
-                state.cart.push(action.payload);
-                storeInLocalStorage(state.cart);
-            }
+
+            state.cart = copyArray;
         },
-        updateQuantity: (state, action) => { },
-        removeItem: (state, action) => { },
-        getCartTotal: (state, action) => { }
+        setPriceHandler: (state, action) => {
+            const { increment, index } = action.payload;
+
+            let copyArray = [...state.cart];
+            copyArray[index].cartTotal += copyArray[index].price * increment;
+
+            //total price
+            state.totalPrice = subTotal(copyArray)
+
+            if (copyArray[index].count === 1 && increment === -1) {
+                copyArray.splice(index, 1);
+                state.totalProduct--;
+            } else {
+                copyArray[index].count += increment;
+            }
+            state.cart = copyArray;
+        },
+        removeProductHandler: (state, action) => {
+            const { index } = action.payload;
+            let copyArray = [...state.cart];
+            copyArray.splice(index, 1);
+            state.totalProduct--;
+            state.totalPrice = subTotal(copyArray);
+
+            state.cart = copyArray;
+        }
     }
 })
+function subTotal(arr) {
+    const total = arr.reduce((acc, curr) => {
+        return acc + curr.cartTotal;
+    }, 0);
+    return total.toFixed(2);
+}
 
-export const { addToCart, updateQuantity, removeItem, getCartTotal } = CartSlice.actions;
+
+export const { addToCart, setPriceHandler, removeProductHandler } = CartSlice.actions;
 export default CartSlice.reducer;
