@@ -1,10 +1,20 @@
 import { useSelector } from "react-redux"
 import CartProductComponent from "../components/CartProductComponent";
+import { useRef, useState } from "react";
 
 
 
 function Cart() {
+    const [currentCoupon, setCurrentCoupon] = useState(null);
+    const coupon = useRef();
     const { totalPrice, cart } = useSelector((state) => state.cartStore);
+
+    function handleCoupon() {
+        setCurrentCoupon(coupon.current.value);
+        coupon.current.value = '';
+    }
+
+
     return (
         <>
             <div className=" mt-5 lg:mt-12">
@@ -36,15 +46,16 @@ function Cart() {
                             <div className="flex flex-col items-center justify-between gap-4 my-4 border border-gray-300">
                                 <div className="flex flex-col justify-center items-center">
                                     <p className="text-base font-medium">Total Price:</p>
-                                    <p className="text-xl font-bold">${totalPrice}</p>
+                                    {/*ispravi ovo mora u redux*/}
+                                    <p className="text-xl font-bold">${currentCoupon === 'green' ? totalPrice - (totalPrice * 10) : totalPrice}</p>
                                 </div>
 
                                 {/*discount*/}
                                 <div className="flex flex-col items-center gap-2">
                                     <p className="text-sm text-slate-500">Take your discount 10%</p>
                                     <div className="border border-slate-500 rounded-full flex flex-row items-center justify-center ">
-                                        <input type="text" placeholder="Insert your coupon" className="px-2 py-1 rounded-full outline-none w-full" />
-                                        <button className="px-2 py-1 rounded-full" >Apply</button>
+                                        <input ref={coupon} type="text" placeholder="Insert your coupon" className="px-2 py-1 rounded-full outline-none w-full" />
+                                        <button className="px-2 py-1 rounded-full" onClick={() => handleCoupon()} >Apply</button>
                                     </div>
                                 </div>
                                 <button className="mt-5 mb-3 px-4 py-2 text-white font-bold bg-green-700 rounded-xl cursor-pointer hover:text-green-700 hover:bg-transparent hover:font-bold hover:underline">Process Payment</button>

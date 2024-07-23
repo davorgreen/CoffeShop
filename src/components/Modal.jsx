@@ -34,6 +34,7 @@ function Modal({ modalOpen, handleClose, item }) {
 
     function addItemToFavorites(item) {
         dispatch(addToFavorite(item));
+        setFavoriteIcon(true);
     }
 
 
