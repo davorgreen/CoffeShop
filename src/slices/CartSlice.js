@@ -1,10 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
-/*function storeInLocalStorage(cart) {
-    localStorage.setItem("cart", JSON.stringify(cart))
-}*/
-
 const CartSlice = createSlice({
     name: 'cart',
     initialState: {
@@ -14,9 +9,7 @@ const CartSlice = createSlice({
     },
     reducers: {
         addToCart: (state, action) => {
-            console.log(action.payload)
             let copyArray = [...state.cart];
-
 
             let findIndex = null;
 
@@ -28,10 +21,12 @@ const CartSlice = createSlice({
             })
             if (findIndex === null) {
                 copyArray.push({ ...action.payload, count: 1, cartTotal: action.payload.price });
-                state.totalPrice += action.payload.price;
+                state.totalPrice = subTotal(copyArray); // Update totalPrice after adding new item
                 state.totalProduct++;
             } else {
                 copyArray[findIndex].count++;
+                copyArray[findIndex].cartTotal = copyArray[findIndex].price * copyArray[findIndex].count;
+                state.totalPrice = subTotal(copyArray); // Update totalPrice after existing item
             }
 
             state.cart = copyArray;
@@ -41,9 +36,10 @@ const CartSlice = createSlice({
 
             let copyArray = [...state.cart];
             copyArray[index].cartTotal += copyArray[index].price * increment;
+            copyArray[index].cartTotal = Math.round(copyArray[index].cartTotal * 100) / 100;
 
-            //total price
-            state.totalPrice = subTotal(copyArray)
+            // Update total price
+            state.totalPrice = subTotal(copyArray);
 
             if (copyArray[index].count === 1 && increment === -1) {
                 copyArray.splice(index, 1);
@@ -62,15 +58,16 @@ const CartSlice = createSlice({
 
             state.cart = copyArray;
         }
-    }
+    },
 })
+
 function subTotal(arr) {
     const total = arr.reduce((acc, curr) => {
         return acc + curr.cartTotal;
     }, 0);
-    return total.toFixed(2);
-}
 
+    return Math.round(total * 100) / 100;
+}
 
 export const { addToCart, setPriceHandler, removeProductHandler } = CartSlice.actions;
 export default CartSlice.reducer;

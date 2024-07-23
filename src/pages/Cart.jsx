@@ -4,7 +4,7 @@ import CartProductComponent from "../components/CartProductComponent";
 
 
 function Cart() {
-    const { cart } = useSelector((state) => state.cartStore);
+    const { totalPrice, cart } = useSelector((state) => state.cartStore);
     return (
         <>
             <div className=" mt-5 lg:mt-12">
@@ -33,10 +33,10 @@ function Cart() {
                             <h2 className="text-center font-medium text-base">Cart Total</h2>
                         </div>
                         <div className="px-5 flex flex-col gap-5">
-                            <div className="flex flex-col items-center justify-between gap-4 my-4 border-b border-gray-700">
-                                <div className="flex flex-row justify-between">
-                                    <p className="text-base font-medium text-  ">Total Price</p>
-                                    <p className="text-base">aaaa</p>
+                            <div className="flex flex-col items-center justify-between gap-4 my-4 border border-gray-300">
+                                <div className="flex flex-col justify-center items-center">
+                                    <p className="text-base font-medium">Total Price:</p>
+                                    <p className="text-xl font-bold">${totalPrice}</p>
                                 </div>
 
                                 {/*discount*/}
@@ -47,8 +47,9 @@ function Cart() {
                                         <button className="px-2 py-1 rounded-full" >Apply</button>
                                     </div>
                                 </div>
+                                <button className="mt-5 mb-3 px-4 py-2 text-white font-bold bg-green-700 rounded-xl cursor-pointer hover:text-green-700 hover:bg-transparent hover:font-bold hover:underline">Process Payment</button>
                             </div>
-                            <button className="mt-5 px-4 py-2 text-white font-bold bg-green-700 rounded-xl cursor-pointer hover:text-green-700 hover:bg-transparent hover:font-bold hover:underline">Process Payment</button>
+
                         </div>
                     </div>
 

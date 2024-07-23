@@ -1,9 +1,9 @@
 //icons
 import { ImCross } from "react-icons/im";
 import { useSelector } from "react-redux";
-
 import CartProductComponent from "./CartProductComponent";
-import Cart from "../pages/Cart";
+
+
 
 
 function Sidebar({ isActive, closedSidebar }) {
@@ -19,14 +19,20 @@ function Sidebar({ isActive, closedSidebar }) {
                         <span className="absolute top-0 right-0 p-4" onClick={closedSidebar}>
                             <ImCross />
                         </span>
-                        {cart && cart.length > 0 ? (cart.map((item, index) => {
-                            return <div className="" key={index}><Cart item={item} index={index} key={index} /></div>
-                        })) : (<div className="text-3xl font-bold uppercase">Empty Cart</div>)}
+                        {cart.length > 0 ? <div className="flex flex-col gap-4 items-start justify-start">
+                            {cart.map((item, index) => {
+                                return <div className="w-2/3" key={index}><CartProductComponent item={item} index={index} key={index} />
+                                </div>
+                            })}
+                            <button onClick={() => closedSidebar()} className="mt-5 px-4 py-2 text-white font-bold bg-green-700 rounded-xl cursor-pointer hover:text-green-700 hover:bg-transparent hover:font-bold hover:underline">Process Payment</button>
+
+                        </div>
+                            : (<div className="text-3xl font-bold uppercase">Empty Cart</div>)}
 
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
