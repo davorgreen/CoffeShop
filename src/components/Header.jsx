@@ -24,7 +24,7 @@ function Header() {
         <div className="container mx-auto items-center md:shadow-2xl lg:flex lg:justify-between md:bg-green-300 md:h-40 lg:w-10/12 lg:h-28">
             <div className="flex flex-row  justify-center items-center">
                 <img src={image} alt="aaa" className="w-28 h-28 " />
-                <h2 className="font-bold text-5xl ml-4 text-green-500">GreenGo</h2>
+                <Link to={'/'}><h2 className="font-bold text-5xl ml-4 text-green-500">GreenGo</h2></Link>
             </div>
             <div className='flex justify-center md:flex flex-wrap text-base py-3 lg:ml-6'>
                 <ul className='flex flex-row gap-5 font-bold text-green-800 text-xl'>

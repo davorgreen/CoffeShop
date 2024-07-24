@@ -7,10 +7,19 @@ import { getProductHandler } from "../slices/ProductSlice";
 
 
 function Shop() {
+    const [modalOpen, setModalOpen] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const dispatch = useDispatch();
     const { allProducts } = useSelector((state) => state.productStore);
+
+    const handleOpen = (productId) => {
+        setModalOpen(productId);
+    }
+
+    const handleClose = () => {
+        setModalOpen(null);
+    }
 
     useEffect(() => {
         setLoading(true)
@@ -26,7 +35,10 @@ function Shop() {
         <div className="flex items-center justify-center min-h-screen">
             <div className="container mx-auto">
                 {allProducts && allProducts.length > 0 ? (<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">{allProducts.map((item) => {
-                    return <CardComponent key={item.id} item={item} />
+                    return <CardComponent key={item.id} item={item} handleOpen={handleOpen}
+                        handleClose={handleClose}
+                        modalOpen={modalOpen === item.id}
+                        label="View Details" />
                 })}</div>) : (<div className="flex items-center justify-center min-h-screen"><ThreeCircles
                     visible={loading}
                     height="100"

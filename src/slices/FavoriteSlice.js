@@ -33,16 +33,13 @@ const favoriteSlice = createSlice({
             state.favoriteItems = copyArray;
 
         },
-        removeFavoriteHandler: (state, action) => {
-            const { index } = action.payload;
-            let copyArray = [...state.cart];
-            copyArray.splice(index, 1);
-            state.totalProduct--;
-
-            state.cart = copyArray;
-        }
+        removeFavorite: (state, action) => {
+            const { id } = action.payload;
+            state.favoriteItems = state.favoriteItems.filter(item => item.id !== id);
+        },
     }
-});
+}
+);
 
-export const { addToFavorite, removeFavoriteHandler } = favoriteSlice.actions;
+export const { addToFavorite, removeFavorite } = favoriteSlice.actions;
 export default favoriteSlice.reducer;
