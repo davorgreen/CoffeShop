@@ -1,18 +1,18 @@
 import { useDispatch, useSelector } from "react-redux"
 import CardComponent from "../components/CardComponent";
-
-
+import { removeFavorite } from "../slices/FavoriteSlice";
 
 
 
 
 
 function FavoritesPage() {
-    const { favoriteItems, removeFavorite } = useSelector((state) => state.favoriteStore);
+    const { favoriteItems } = useSelector((state) => state.favoriteStore);
     const dispatch = useDispatch();
 
+
     function handleRemoveFavorite(id) {
-        dispatch(removeFavorite(id));
+        dispatch(removeFavorite({ id }));
     }
 
     return (

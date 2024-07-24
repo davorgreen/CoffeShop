@@ -1,10 +1,10 @@
-import { useState } from "react";
+
 import Modal from "./Modal";
-import { useDispatch } from "react-redux";
 
 
 
-function CardComponent({ item, label, handleOpen, handleClose, modalOpen, handleRemoveFavorite }) {
+
+function CardComponent({ item, label, handleOpen, handleClose, modalOpen, handleRemoveFavorite, index }) {
     const {
         id,
         name,
@@ -20,11 +20,12 @@ function CardComponent({ item, label, handleOpen, handleClose, modalOpen, handle
 
     const handleClick = () => {
         if (label === 'View Details') {
-            handleOpen(item.id);
+            handleOpen(id);
         } else if (label === 'Remove From Favorites') {
             handleRemoveFavorite(id);
         }
     };
+
 
     return (
         <div className=
@@ -37,8 +38,7 @@ function CardComponent({ item, label, handleOpen, handleClose, modalOpen, handle
             <div className="flex flex-col p-4 gap-2 justify-center items-center" >
                 <div className="text-xl text-green-800 font-bold underline">{name}</div>
                 <div className="text-gray-700 font-bold">{description}</div>
-                <button className="mt-5 px-4 py-2 text-white font-bold bg-green-700 rounded-xl cursor-pointer hover:text-green-700 hover:bg-transparent hover:font-bold hover:underline" onClick={handleClick
-                } >{label}</button>
+                <button className="mt-5 px-4 py-2 text-white font-bold bg-green-700 rounded-xl cursor-pointer hover:text-green-700 hover:bg-transparent hover:font-bold hover:underline" onClick={handleClick} >{label}</button>
             </div >
             {label === 'View Details' && (
                 <Modal modalOpen={modalOpen} handleClose={handleClose} item={item} />

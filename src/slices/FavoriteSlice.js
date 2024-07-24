@@ -25,7 +25,7 @@ const favoriteSlice = createSlice({
                 copyArray.push(action.payload);
                 state.favoriteTotal++;
             } else {
-                copyArray.splice(findIndex, 2);
+                copyArray.splice(findIndex, 1);
                 state.favoriteTotal--;
             }
 
@@ -36,9 +36,12 @@ const favoriteSlice = createSlice({
         removeFavorite: (state, action) => {
             const { id } = action.payload;
             state.favoriteItems = state.favoriteItems.filter(item => item.id !== id);
-        },
-    }
+            state.favoriteTotal--;
+        }
+
+    },
 }
+
 );
 
 export const { addToFavorite, removeFavorite } = favoriteSlice.actions;
