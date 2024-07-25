@@ -68,10 +68,12 @@ function Modal({ modalOpen, handleClose, item }) {
     }
 
     function addItemToCart(item) {
-        dispatch(addToCart(item))
-        handleAddFunction();
-
-
+        if (cart.length > 0) {
+            dispatch(addToCart(item));
+        } else {
+            dispatch(addToCart(item));
+            handleAddFunction();
+        }
     }
 
     function addItemToFavorites(item) {
@@ -98,7 +100,7 @@ function Modal({ modalOpen, handleClose, item }) {
                 return;
             }
         })
-    }, [favoriteItems, id]);
+    }, [favoriteItems]);
 
 
     useEffect(() => {
@@ -108,7 +110,7 @@ function Modal({ modalOpen, handleClose, item }) {
                 return;
             }
         })
-    }, [cart, id])
+    }, [cart])
 
 
     return (
@@ -124,11 +126,18 @@ function Modal({ modalOpen, handleClose, item }) {
                     <div className="text-gray-700 font-bold">Roast Level: <span className="font-bold">{roast_level}</span></div>
                     <div className="flex gap-5">
                         <button className="flex flex-row items-center gap-1 px-4 py-2 bg-green-400 text-white font-bold rounded-xl hover:text-green-900 hover:underline hover:bg-transparent " onClick={() => addItemToFavorites(item)}>Add To Favorites{favoriteIcon === id ? <FaRegHeart size={20} color="red" /> : <FaRegHeart size={20} color="green" />}</button>
-                        <button className="flex flex-row items-center gap-1 px-6 py-3 bg-green-400 text-white font-bold rounded-xl hover:text-green-900 hover:underline hover:bg-transparent " onClick={() => addItemToCart(item)}><Link to={''}> {inCart ? 'View Cart' : 'Add To Cart'}</Link>{inCart === id ? <MdOutlineShoppingCart size={20} color="red" /> : <MdOutlineShoppingCart size={20} color="green" />}</button>
+                        <button className="flex flex-row items-center gap-1 px-6 py-3 bg-green-400 text-white font-bold rounded-xl hover:text-green-900 hover:underline hover:bg-transparent " onClick={() => {
+                            if (inCart) {
+                                navigate('/cart');
+                            } else {
+                                addItemToCart(item);
+                            }
+                        }} > <Link to={''}> {inCart ? 'View Cart' : 'Add To Cart'}</Link>{inCart === id ? <MdOutlineShoppingCart size={20} color="red" /> : <MdOutlineShoppingCart size={20} color="green" />}</button>
                     </div>
                 </div>
-            </div>)}</div>
+            </div>)
+        }</div >
     )
 }
 
-export default Modal
+export default Modal;
