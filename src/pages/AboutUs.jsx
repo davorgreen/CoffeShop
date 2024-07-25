@@ -15,7 +15,7 @@ function AboutUs() {
 
             <p className="font-serif text-gray-700 text-xl leading-8 text-center px-6">Founded with a mission to bring the finest coffee experiences to the world, GreenGo has grown into a renowned name in the coffee industry. From the heart of coffee plantations to your favorite cup, we meticulously oversee every step of the process. Our commitment to quality ensures that every sip you take is a testament to the hard work and dedication of coffee farmers, roasters, and baristas around the globe.</p>
 
-            <Link to={'/shop'} className="flex gap-3 items-center">
+            <Link to={'/shop'} className="flex gap-3 items-center hover:underline cursor-pointer">
                 <h3 className="text-3xl font-bold text-green-700">Our Coffee </h3>
                 <MdOutlineShoppingCart size={30} color="green" />
             </Link>

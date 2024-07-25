@@ -23,10 +23,9 @@ function Shop() {
 
     useEffect(() => {
         setLoading(true)
-        base.get().
-            then((res) => dispatch(getProductHandler((res.data))))
+        base.get()
+            .then((res) => dispatch(getProductHandler((res.data))))
             .catch((err) => setError(err.message))
-            .finally(setLoading(false))
     }, []);
 
 

@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 import { addToFavorite } from "../slices/FavoriteSlice";
 
 function Modal({ modalOpen, handleClose, item }) {
-    const [addedItemToCart, setAddedItemToCart] = useState(false);
     const [favoriteIcon, setFavoriteIcon] = useState(null);
     const [inCart, setInCart] = useState(null);
 
@@ -29,7 +28,6 @@ function Modal({ modalOpen, handleClose, item }) {
 
     function addItemToCart(item) {
         dispatch(addToCart(item));
-        setAddedItemToCart(true);
     }
 
     function addItemToFavorites(item) {
@@ -71,7 +69,7 @@ function Modal({ modalOpen, handleClose, item }) {
                     <div className="text-gray-700 font-bold">Roast Level: <span className="font-bold">{roast_level}</span></div>
                     <div className="flex gap-5">
                         <button className="flex flex-row items-center gap-1 px-4 py-2 bg-green-400 text-white font-bold rounded-xl hover:text-green-900 hover:underline hover:bg-transparent " onClick={() => addItemToFavorites(item)}><Link to={'/favorites'}>Add To Favorites</Link>{favoriteIcon === id ? <FaRegHeart size={20} color="red" /> : <FaRegHeart size={20} color="green" />}</button>
-                        <button className="flex flex-row items-center gap-1 px-6 py-3 bg-green-400 text-white font-bold rounded-xl hover:text-green-900 hover:underline hover:bg-transparent " onClick={() => addItemToCart(item)}><Link to={'/cart'}> {addedItemToCart ? 'View Cart' : 'Add To Cart'}</Link>{inCart === id ? <MdOutlineShoppingCart size={20} color="red" /> : <MdOutlineShoppingCart size={20} color="green" />}</button>
+                        <button className="flex flex-row items-center gap-1 px-6 py-3 bg-green-400 text-white font-bold rounded-xl hover:text-green-900 hover:underline hover:bg-transparent " onClick={() => addItemToCart(item)}><Link to={'/cart'}> {inCart ? 'View Cart' : 'Add To Cart'}</Link>{inCart === id ? <MdOutlineShoppingCart size={20} color="red" /> : <MdOutlineShoppingCart size={20} color="green" />}</button>
                     </div>
                 </div>
             </div>)}</div>
