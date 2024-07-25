@@ -8,6 +8,7 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
 
 
 
@@ -36,9 +37,16 @@ function Header() {
                 </ul>
             </div>
             <div className='flex gap-5 mr-5 justify-center mt-5 md:mt-0'>
-                <Link>
+                <div className='flex flex-row hover:text-orange-300 focus:underline focus:decoration-orange-400 transition-all font-bold text-green-800 text-md'>
                     <FaRegUser size={28} color='green' />
-                </Link>
+                    <SignedOut>
+                        <SignInButton />
+                    </SignedOut>
+                    <SignedIn>
+                        <UserButton afterSwitchSessionUrl='/' />
+                    </SignedIn>
+                </div>
+
                 <Link to={'favorites'}>
                     <FaRegHeart size={28} color='green' />
                     <div className='relative'>
