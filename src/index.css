@@ -12,3 +12,8 @@
 	content: '←';
 	color: green;
 }
+
+confirmAlert {
+	width: 300px;
+	background-color: green;
+}

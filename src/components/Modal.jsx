@@ -2,15 +2,24 @@
 import { IoMdCloseCircle } from "react-icons/io";
 import { FaRegHeart } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../slices/CartSlice";
 import { useEffect, useState } from "react";
 import { addToFavorite } from "../slices/FavoriteSlice";
+import '../index.css'
+
+//library
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import CSS
+import { confirmAlert } from "react-confirm-alert";
+import 'react-toastify/dist/ReactToastify.css';
+import { Bounce, toast } from "react-toastify";
 
 function Modal({ modalOpen, handleClose, item }) {
     const [favoriteIcon, setFavoriteIcon] = useState(null);
     const [inCart, setInCart] = useState(null);
+    const navigate = useNavigate();
 
     const { favoriteItems } = useSelector((state) => state.favoriteStore);
     const { cart } = useSelector((state) => state.cartStore);
@@ -25,14 +34,60 @@ function Modal({ modalOpen, handleClose, item }) {
         grind_option,
         roast_level, } = item;
 
+    const handleAddFunction = () => {
+        confirmAlert({
+            customUI: ({ onClose }) => {
+                return (
+                    <div className='flex flex-col gap-5 bg-white p-4 rounded-lg shadow-md'>
+                        <h1 className='underline text-xl font-bold text-green-900'>Confirm to continue</h1>
+                        <p className='text-2xl font-bold text-green-500'>Do you want to continue shopping?</p>
+                        <div className='flex gap-5 md:justify-between items-center'>
+                            <button
+                                className='px-4 py-2 text-white font-bold bg-green-700 rounded-xl cursor-pointer hover:text-green-700 hover:bg-transparent hover:font-bold hover:underline'
+                                onClick={() => {
+                                    onClose();
+                                    navigate('/shop');
+                                }}
+                            >
+                                Yes
+                            </button>
+                            <button
+                                className='px-4 py-2 text-white font-bold bg-green-700 rounded-xl cursor-pointer hover:text-green-700 hover:bg-transparent hover:font-bold hover:underline'
+                                onClick={() => {
+                                    onClose();
+                                    navigate('/cart');
+                                }}
+                            >
+                                No
+                            </button>
+                        </div>
+                    </div>
+                );
+            },
+        });
+    }
 
     function addItemToCart(item) {
-        dispatch(addToCart(item));
+        dispatch(addToCart(item))
+        handleAddFunction();
+
+
     }
 
     function addItemToFavorites(item) {
         dispatch(addToFavorite(item));
         setFavoriteIcon(true);
+        toast.success('Added To Favorite!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            transition: Bounce,
+        });
     }
 
 
@@ -43,7 +98,7 @@ function Modal({ modalOpen, handleClose, item }) {
                 return;
             }
         })
-    }, [favoriteItems]);
+    }, [favoriteItems, id]);
 
 
     useEffect(() => {
@@ -53,7 +108,7 @@ function Modal({ modalOpen, handleClose, item }) {
                 return;
             }
         })
-    }, [cart])
+    }, [cart, id])
 
 
     return (
@@ -68,8 +123,8 @@ function Modal({ modalOpen, handleClose, item }) {
                     <div className="text-gray-700 font-bold">Grind Option: <span className="underline">{grind_option}</span> </div>
                     <div className="text-gray-700 font-bold">Roast Level: <span className="font-bold">{roast_level}</span></div>
                     <div className="flex gap-5">
-                        <button className="flex flex-row items-center gap-1 px-4 py-2 bg-green-400 text-white font-bold rounded-xl hover:text-green-900 hover:underline hover:bg-transparent " onClick={() => addItemToFavorites(item)}><Link to={'/favorites'}>Add To Favorites</Link>{favoriteIcon === id ? <FaRegHeart size={20} color="red" /> : <FaRegHeart size={20} color="green" />}</button>
-                        <button className="flex flex-row items-center gap-1 px-6 py-3 bg-green-400 text-white font-bold rounded-xl hover:text-green-900 hover:underline hover:bg-transparent " onClick={() => addItemToCart(item)}><Link to={'/cart'}> {inCart ? 'View Cart' : 'Add To Cart'}</Link>{inCart === id ? <MdOutlineShoppingCart size={20} color="red" /> : <MdOutlineShoppingCart size={20} color="green" />}</button>
+                        <button className="flex flex-row items-center gap-1 px-4 py-2 bg-green-400 text-white font-bold rounded-xl hover:text-green-900 hover:underline hover:bg-transparent " onClick={() => addItemToFavorites(item)}>Add To Favorites{favoriteIcon === id ? <FaRegHeart size={20} color="red" /> : <FaRegHeart size={20} color="green" />}</button>
+                        <button className="flex flex-row items-center gap-1 px-6 py-3 bg-green-400 text-white font-bold rounded-xl hover:text-green-900 hover:underline hover:bg-transparent " onClick={() => addItemToCart(item)}><Link to={''}> {inCart ? 'View Cart' : 'Add To Cart'}</Link>{inCart === id ? <MdOutlineShoppingCart size={20} color="red" /> : <MdOutlineShoppingCart size={20} color="green" />}</button>
                     </div>
                 </div>
             </div>)}</div>

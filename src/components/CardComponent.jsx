@@ -9,12 +9,6 @@ function CardComponent({ item, label, handleOpen, handleClose, modalOpen, handle
         id,
         name,
         description,
-        price,
-        region,
-        weight,
-        flavor_profil,
-        grind_option,
-        roast_level,
         image_url,
     } = item;
 

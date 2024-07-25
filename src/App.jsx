@@ -14,6 +14,7 @@ import Blog from './pages/Blog';
 import NotFoundPage from './pages/NotFoundPage';
 import 'slick-carousel/slick/slick.css';
 import FavoritesPage from './pages/FavoritesPage';
+import { ToastContainer } from 'react-toastify';
 
 
 
@@ -35,6 +36,7 @@ function App() {
           <Route path='/favorites' element={<FavoritesPage />} />
         </Routes>
         <Footer />
+        <ToastContainer />
       </Router>
     </div>
   )
