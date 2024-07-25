@@ -2,6 +2,7 @@
 import { ImCross } from "react-icons/im";
 import { useSelector } from "react-redux";
 import CartProductComponent from "./CartProductComponent";
+import { Link } from "react-router-dom";
 
 
 
@@ -24,8 +25,7 @@ function Sidebar({ isActive, closedSidebar }) {
                                 return <div className="w-2/3" key={index}><CartProductComponent item={item} index={index} key={index} />
                                 </div>
                             })}
-                            <button onClick={() => closedSidebar()} className="mt-5 px-4 py-2 text-white font-bold bg-green-700 rounded-xl cursor-pointer hover:text-green-700 hover:bg-transparent hover:font-bold hover:underline">Process Payment</button>
-
+                            <Link to={'/cart'} onClick={() => closedSidebar()} className="mt-5 px-4 py-2 text-white font-bold bg-green-700 rounded-xl cursor-pointer hover:text-green-700 hover:bg-transparent hover:font-bold hover:underline">View Cart</Link>
                         </div>
                             : (<div className="text-3xl font-bold uppercase">Empty Cart</div>)}
 

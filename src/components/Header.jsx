@@ -45,7 +45,7 @@ function Header() {
                         <span className='absolute left-5 bottom-6 flex items-center justify-center px-2 py-1 rounded-2xl bg-yellow-400 text-white font-bold'>{favoriteTotal}</span>
                     </div>
                 </Link>
-                <Link to={'/cart'}>
+                <Link>
                     <MdOutlineShoppingCart size={28} color='green' onClick={toggleSidebar} />
                     <div className='relative'>
                         <span className='absolute left-5 bottom-6 flex items-center justify-center px-2 py-1 rounded-2xl bg-yellow-400 text-white font-bold'>{totalProduct}</span>
