@@ -38,7 +38,7 @@ function Modal({ modalOpen, handleClose, item }) {
         confirmAlert({
             customUI: ({ onClose }) => {
                 return (
-                    <div className='flex flex-col gap-5 bg-white p-4 rounded-lg shadow-md'>
+                    <div className='flex flex-col gap-5 bg-white p-4 rounded-lg shadow-2xl'>
                         <h1 className='underline text-xl font-bold text-green-900'>Confirm to continue</h1>
                         <p className='text-2xl font-bold text-green-500'>Do you want to continue shopping?</p>
                         <div className='flex gap-5 md:justify-between items-center'>
