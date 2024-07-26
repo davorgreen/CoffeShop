@@ -11,6 +11,7 @@ function Cart() {
 
     function handleCoupon() {
         setCurrentCoupon(coupon.current.value);
+
         coupon.current.value = '';
     }
 
@@ -47,9 +48,8 @@ function Cart() {
                                 <div className="flex flex-col justify-center items-center">
                                     <p className="text-base font-medium">Total Price:</p>
                                     {/*ispravi ovo mora u redux*/}
-                                    <p className="text-xl font-bold">${currentCoupon === 'green' ? totalPrice - (totalPrice * 10) : totalPrice}</p>
+                                    <p className="text-xl font-bold">${currentCoupon === 'green' ? (totalPrice - (totalPrice * 0.1).toFixed(2)) : totalPrice}</p>
                                 </div>
-
                                 {/*discount*/}
                                 <div className="flex flex-col items-center gap-2">
                                     <p className="text-sm text-slate-500">Take your discount 10%</p>

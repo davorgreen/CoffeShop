@@ -57,7 +57,7 @@ const CartSlice = createSlice({
             state.totalPrice = subTotal(copyArray);
 
             state.cart = copyArray;
-        }
+        },
     },
 })
 
