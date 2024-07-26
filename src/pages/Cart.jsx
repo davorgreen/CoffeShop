@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux"
 import CartProductComponent from "../components/CartProductComponent";
 import { useRef, useState } from "react";
+import CheckoutForm from "../components/CheckOutForm";
+
 
 
 
@@ -8,6 +10,7 @@ function Cart() {
     const [currentCoupon, setCurrentCoupon] = useState(null);
     const coupon = useRef();
     const { totalPrice, cart } = useSelector((state) => state.cartStore);
+    const [finishShopping, setFinishSHopping] = useState(false)
 
     function handleCoupon() {
         setCurrentCoupon(coupon.current.value);
@@ -15,6 +18,9 @@ function Cart() {
         coupon.current.value = '';
     }
 
+    function handleToPay() {
+        setFinishSHopping(!finishShopping);
+    }
 
     return (
         <>
@@ -38,16 +44,15 @@ function Cart() {
                     </div>
 
                     {/*rigth side*/}
-                    <div className="w-full lg:w-[30%] border border-mainBlue overflow-hidden flex flex-col gap-3  sticky rounded-lg">
+                    <div className="w-full lg:w-[30%] border border-mainBlue overflow-hidden flex flex-col gap-3  rounded-lg">
                         {/*heading*/}
                         <div className="h-14 bg-green-300 flex items-center justify-center">
                             <h2 className="text-center font-medium text-base">Cart Total</h2>
                         </div>
-                        <div className="px-5 flex flex-col gap-5">
+                        <div className="px-5 flex flex-col gap-5 relative">
                             <div className="flex flex-col items-center justify-between gap-4 my-4 border border-gray-300">
-                                <div className="flex flex-col justify-center items-center">
+                                <div className="flex flex-col justify-center items-center ">
                                     <p className="text-base font-medium">Total Price:</p>
-                                    {/*ispravi ovo mora u redux*/}
                                     <p className="text-xl font-bold">${currentCoupon === 'green' ? (totalPrice - (totalPrice * 0.1).toFixed(2)) : totalPrice}</p>
                                 </div>
                                 {/*discount*/}
@@ -58,12 +63,14 @@ function Cart() {
                                         <button className="px-2 py-1 rounded-full" onClick={() => handleCoupon()} >Apply</button>
                                     </div>
                                 </div>
-                                <button className="mt-5 mb-3 px-4 py-2 text-white font-bold bg-green-700 rounded-xl cursor-pointer hover:text-green-700 hover:bg-transparent hover:font-bold hover:underline">Process Payment</button>
+                                <button className="mt-5 mb-3 px-4 py-2 text-white font-bold bg-green-700 rounded-xl cursor-pointer hover:text-green-700 hover:bg-transparent hover:font-bold hover:underline" onClick={() => handleToPay()}>Process Payment</button>
+                                {
+                                    finishShopping && <div className="absolute top-0 right-0 w-full h-full"> < CheckoutForm />
+                                    </div>
+                                }
                             </div>
-
                         </div>
                     </div>
-
                 </div>
             </div> </>
 
