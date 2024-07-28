@@ -20,11 +20,11 @@ function Footer() {
 
                         </div>
                         <div className="w-2/6">
-                            <Link to={'/contact'}> <h1 className="text-2xl mb-5  text-green-800 font-bold underline ">Information</h1>
-                                <p className="hover:text-orange-500 focus:underline focus:decoration-orange-400 transition-all text-xl">Privacy Policy</p></Link>
-                            <p className="hover:text-orange-500 focus:underline focus:decoration-orange-400 transition-all text-xl" >Refund Policy</p>
-                            <p className="hover:text-orange-500 focus:underline focus:decoration-orange-400 transition-all text-xl">Shipping & Return</p>
-                            <p className="hover:text-orange-500 focus:underline focus:decoration-orange-400 transition-all text-xl">Terms & Condition</p>
+                            <Link to={'/contact'}> <h1 className="text-2xl mb-5  text-green-800 font-bold underline ">Information</h1></Link>
+                            <Link to={'/privacypolicy'}>  <p className="hover:text-orange-500 focus:underline focus:decoration-orange-400 transition-all text-xl">Privacy Policy</p></Link>
+                            <Link to={'/refundpolicy'}> <p className="hover:text-orange-500 focus:underline focus:decoration-orange-400 transition-all text-xl" >Refund Policy</p> </Link>
+                            <Link to={'/shippingreturn'}> <p className="hover:text-orange-500 focus:underline focus:decoration-orange-400 transition-all text-xl">Shipping & Return</p></Link>
+                            <Link to={'/termscondition'}><p className="hover:text-orange-500 focus:underline focus:decoration-orange-400 transition-all text-xl">Terms & Condition</p></Link>
                         </div>
                         <div className="w-2/6">
                             <h1 className="text-2xl mb-5  text-green-800 font-bold underline ">Let's Get In Touch</h1>

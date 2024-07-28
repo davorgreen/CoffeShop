@@ -15,6 +15,10 @@ import NotFoundPage from './pages/NotFoundPage';
 import 'slick-carousel/slick/slick.css';
 import FavoritesPage from './pages/FavoritesPage';
 import { ToastContainer } from 'react-toastify';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import RefundPolicy from './pages/RefundPolicy';
+import ShippingReturn from './pages/ShippingReturn';
+import TermsCondition from './pages/TermsCondition';
 
 
 
@@ -34,6 +38,10 @@ function App() {
           <Route path='/blog' element={<Blog />} />
           <Route path='/*' element={<NotFoundPage />} />
           <Route path='/favorites' element={<FavoritesPage />} />
+          <Route path='/privacypolicy' element={<PrivacyPolicy />} />
+          <Route path='/refundpolicy' element={<RefundPolicy />} />
+          <Route path='/shippingreturn' element={<ShippingReturn />} />
+          <Route path='/termscondition' element={<TermsCondition />} />
         </Routes>
         <Footer />
         <ToastContainer />
