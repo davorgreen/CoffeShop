@@ -31,7 +31,7 @@ function Header() {
                 <ul className='flex flex-row gap-5 font-bold text-green-800 text-xl'>
                     <Link to={'/'} className=' hover:text-orange-300 focus:underline focus:decoration-orange-400 transition-all '>Home</Link>
                     <Link to={'/shop'} className=' hover:text-orange-300 focus:underline focus:decoration-orange-400 transition-all '>Shop</Link>
-                    <Link to={'/blog'} className=' hover:text-orange-300 focus:underline focus:decoration-orange-400  transition-all '>Blog</Link>
+                    <Link to={'/ourteam'} className=' hover:text-orange-300 focus:underline focus:decoration-orange-400  transition-all '>Our Team</Link>
                     <Link to={'/about'} className=' hover:text-orange-300 focus:underline focus:decoration-orange-400 transition-all '>About Us</Link>
                     <Link to={'/contact'} className=' hover:text-orange-300 focus:underline focus:decoration-orange-400 transition-all '>Contact Us</Link>
                 </ul>

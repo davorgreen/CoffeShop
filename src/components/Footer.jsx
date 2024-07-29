@@ -24,7 +24,7 @@ function Footer() {
                             <Link to={'/shop'}> <p className="hover:text-orange-500 focus:underline focus:decoration-orange-400 transition-all text-xl">"GreenGo is one of the biggest international coffee shop, one of the world’s largest distribution groups."</p></Link></div>
                         <div className="w-2/6">
                             <h1 className="text-2xl mb-5  text-green-800 font-bold underline ">Quick Links</h1>
-                            <p className="hover:text-orange-500 focus:underline focus:decoration-orange-400 transition-all text-xl">My Account</p>
+                            <Link to={'/about'}> <p className="hover:text-orange-500 focus:underline focus:decoration-orange-400 transition-all text-xl">About Us</p></Link>
                             <Link to={'/cart'}><p className="hover:text-orange-500 focus:underline focus:decoration-orange-400 transition-all text-xl" >Shopping Cart</p></Link>
                             <Link to={'/favorites'}> <p className="hover:text-orange-500 focus:underline focus:decoration-orange-400 transition-all text-xl">Wishlist</p></Link>
 

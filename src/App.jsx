@@ -10,7 +10,6 @@ import Cart from './pages/Cart';
 import Shop from './pages/Shop';
 import Contact from './pages/Contact';
 import AboutUs from './pages/AboutUs';
-import Blog from './pages/Blog';
 import NotFoundPage from './pages/NotFoundPage';
 import 'slick-carousel/slick/slick.css';
 import FavoritesPage from './pages/FavoritesPage';
@@ -19,6 +18,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import RefundPolicy from './pages/RefundPolicy';
 import ShippingReturn from './pages/ShippingReturn';
 import TermsCondition from './pages/TermsCondition';
+import OurTeam from './pages/OurTeam';
 
 
 
@@ -35,7 +35,7 @@ function App() {
           <Route path='/shop' element={<Shop />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/about' element={<AboutUs />} />
-          <Route path='/blog' element={<Blog />} />
+          <Route path='/ourteam' element={<OurTeam />} />
           <Route path='/*' element={<NotFoundPage />} />
           <Route path='/favorites' element={<FavoritesPage />} />
           <Route path='/privacypolicy' element={<PrivacyPolicy />} />

@@ -127,7 +127,7 @@ const ContactUs = () => {
                         ></textarea>
                         <button
                             type="submit"
-                            className="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600 transition-all"
+                            className="w-full bg-green-600 text-white p-2 rounded hover:bg-green-700 transition-all"
                         >
                             Send Message
                         </button>
