@@ -27,7 +27,7 @@ const ContactUs = () => {
         },
         {
             question: "Where are you located?",
-            answer: "We are located at 123 Coffee Street, Green City. You can find directions on our website.",
+            answer: "We are located at 123 Street, Subotica. You can find directions on our website.",
             isOpen: false
         },
         {
@@ -42,12 +42,12 @@ const ContactUs = () => {
         },
         {
             question: "What payment methods do you accept?",
-            answer: "We accept cash, credit/debit cards, and mobile payments like Apple Pay and Google Wallet.",
+            answer: "We accept cash or credit/debit cards.",
             isOpen: false
         },
         {
             question: "Do you offer gift cards?",
-            answer: "Yes, we offer gift cards which can be purchased at our store or online.",
+            answer: "Yes, we offer gift cards which can be purchased at our store.",
             isOpen: false
         },
         {
@@ -142,7 +142,7 @@ const ContactUs = () => {
                     At GreenGo, our customers are our top priority. Whether you have a question, a concern, or simply want to share your feedback, we are always here to help. Feel free to reach out to us through any of the following methods:</p>
                 <p className="text-lg text-green-700"><strong>Phone:</strong> +1 234 567 890</p>
                 <p className="text-lg text-green-700"><strong>Email:</strong> contact@greengo.com</p>
-                <p className="text-lg text-green-700"><strong>Office Hours:</strong> Mon - Fri, 8am - 6pm</p>
+                <p className="text-lg text-green-700"><strong>Office Hours:</strong> Mon - Sun, 8am - 8pm</p>
             </div>
 
             <div className="container mx-auto p-6 m-5  w-2/3">
