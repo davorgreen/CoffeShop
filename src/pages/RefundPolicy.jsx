@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const RefundPolicy = () => {
     return (
@@ -19,7 +20,7 @@ const RefundPolicy = () => {
                     Once we receive your item, we will inspect it and notify you of the status of your refund. If your return is approved, we will initiate a refund to your original method of payment.
                 </p>
 
-                <h2 className="text-2xl font-semibold mb-4">Contact Us</h2>
+                <Link to={'/contact'}><h2 className="text-2xl font-semibold mb-4">Contact Us</h2></Link>
                 <p>
                     If you have any questions about our Refund Policy, please contact us at:
                 </p>

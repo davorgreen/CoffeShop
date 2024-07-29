@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 const PrivacyPolicy = () => {
@@ -33,7 +34,7 @@ const PrivacyPolicy = () => {
                     <li>To gather analysis or valuable information so that we can improve our service</li>
                 </ul>
 
-                <h2 className="text-2xl font-semibold mb-4">Contact Us</h2>
+                <Link to={'/contact'}><h2 className="text-2xl font-semibold mb-4">Contact Us</h2></Link>
                 <p>
                     If you have any questions about this Privacy Policy, please contact us at:
                 </p>

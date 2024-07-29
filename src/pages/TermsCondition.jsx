@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 const TermsCondition = () => {
@@ -20,7 +21,7 @@ const TermsCondition = () => {
                     All content on our site, including text, graphics, and logos, is the property of our coffee shop and protected by copyright laws.
                 </p>
 
-                <h2 className="text-2xl font-semibold mb-4">Contact Us</h2>
+                <Link to={'/contact'}><h2 className="text-2xl font-semibold mb-4">Contact Us</h2></Link>
                 <p>
                     If you have any questions about our Terms & Conditions, please contact us at:
                 </p>

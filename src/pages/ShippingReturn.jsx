@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 const ShippingReturn = () => {
@@ -20,7 +21,7 @@ const ShippingReturn = () => {
                     You can return items within 30 days of receipt. Items must be in their original condition and packaging.
                 </p>
 
-                <h2 className="text-2xl font-semibold mb-4">Contact Us</h2>
+                <Link to={'/contact'}><h2 className="text-2xl font-semibold mb-4">Contact Us</h2></Link>
                 <p>
                     If you have any questions about our Shipping & Return Policy, please contact us at:
                 </p>
