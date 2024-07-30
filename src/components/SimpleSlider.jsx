@@ -23,8 +23,9 @@ export default function SimpleSlider() {
     };
 
     return (
-        <div className="mt-32 mb-40">
-            <div className="slider-container mx-auto w-3/4">
+        <div className="mt-5 rounded-lg">
+            <h3 className="text-center m-5 font-bold text-3xl text-green-800">Our Gallery</h3>
+            <div className="slider-container mx-auto w-11/12">
                 <Slider {...settings}>
 
 

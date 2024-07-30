@@ -16,7 +16,7 @@ const CommentSlider = () => {
     };
 
     return (
-        <div className="container mx-auto m-8  text-center w-2/3 bg-green-200 rounded-lg shadow-2xl">
+        <div className="container mx-auto mt-10 mb-10  text-center w-2/3 bg-green-200 rounded-lg shadow-2xl">
             <h3 className="text-center m-5 font-bold text-3xl text-green-800">What Our Customer Says</h3>
             <Slider {...settings}>
                 {reviews.map((el, index) => (
