@@ -1,4 +1,6 @@
+import CommentSlider from "../components/CommentSlider";
 import SimpleSlider from "../components/SimpleSlider";
+
 
 
 
@@ -7,7 +9,11 @@ function Home() {
 
         <div className="">
             <SimpleSlider />
+            <CommentSlider />
         </div>
+
+
+
 
     )
 }
