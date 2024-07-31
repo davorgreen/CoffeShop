@@ -27,7 +27,7 @@ function Header() {
                 <img src={image} alt="aaa" className="w-28 h-28 " />
                 <Link to={'/'}><h2 className="font-bold text-5xl ml-4 text-green-500">GreenGo</h2></Link>
             </div>
-            <div className='flex justify-center md:flex flex-wrap text-base py-3 lg:ml-6'>
+            <div className='flex justify-center md:flex flex-wrap text-base py-3 lg:ml-5'>
                 <ul className='flex flex-row gap-5 font-bold text-green-800 text-xl'>
                     <Link to={'/'} className=' hover:text-orange-300 focus:underline focus:decoration-orange-400 transition-all '>Home</Link>
                     <Link to={'/shop'} className=' hover:text-orange-300 focus:underline focus:decoration-orange-400 transition-all '>Shop</Link>
@@ -36,7 +36,7 @@ function Header() {
                     <Link to={'/contact'} className=' hover:text-orange-300 focus:underline focus:decoration-orange-400 transition-all '>Contact Us</Link>
                 </ul>
             </div>
-            <div className='flex gap-5 mr-5 justify-center mt-5'>
+            <div className='flex gap-5 mr-5 justify-center '>
                 <div className='flex flex-row hover:text-orange-300 focus:underline focus:decoration-orange-400 transition-all font-bold text-green-800 text-md'>
                     <FaRegUser size={28} color='green' />
                     <SignedOut>

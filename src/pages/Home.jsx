@@ -33,7 +33,7 @@ function Home() {
                     />
                 </div>
                 <div className="w-full md:w-1/2 ">
-                    <h3 className="text-center font-bold text-3xl mb-5 text-green-800">Our Story</h3>
+                    <h3 className="text-center font-bold text-3xl mb-5 text-green-700">Our Story</h3>
                     <p className="md:text-xl mb-8 font-lora tracking-wide leading-relaxed text-center">
                         Your ultimate destination for exceptional coffee experiences. Established in 2012, GreenGo began its journey as a humble local café, serving the finest brews to our community. Over the years, our passion for coffee and commitment to quality have propelled us to new heights.
                     </p>
@@ -47,6 +47,7 @@ function Home() {
             </div>
             <SimpleSlider />
             <CommentSlider />
+
 
         </div>
 
