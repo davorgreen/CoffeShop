@@ -78,7 +78,6 @@ function Modal({ modalOpen, handleClose, item }) {
 
     function addItemToFavorites(item) {
         dispatch(addToFavorite(item));
-        setFavoriteIcon(true);
         toast.success('Added To Favorite!', {
             position: "top-right",
             autoClose: 3000,

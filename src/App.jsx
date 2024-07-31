@@ -19,6 +19,7 @@ import RefundPolicy from './pages/RefundPolicy';
 import ShippingReturn from './pages/ShippingReturn';
 import TermsCondition from './pages/TermsCondition';
 import OurTeam from './pages/OurTeam';
+import Payment from './pages/Payment';
 
 
 
@@ -42,6 +43,7 @@ function App() {
           <Route path='/refundpolicy' element={<RefundPolicy />} />
           <Route path='/shippingreturn' element={<ShippingReturn />} />
           <Route path='/termscondition' element={<TermsCondition />} />
+          <Route path='/payment' element={<Payment />} />
         </Routes>
         <Footer />
         <ToastContainer />

@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux"
 import CartProductComponent from "../components/CartProductComponent";
 import { useRef, useState } from "react";
-import CheckoutForm from "../components/CheckOutForm";
+import { useNavigate } from "react-router";
+
 
 
 
@@ -10,7 +11,7 @@ function Cart() {
     const [currentCoupon, setCurrentCoupon] = useState(null);
     const coupon = useRef();
     const { totalPrice, cart } = useSelector((state) => state.cartStore);
-    const [finishShopping, setFinishSHopping] = useState(false)
+    const navigate = useNavigate();
 
     function handleCoupon() {
         setCurrentCoupon(coupon.current.value);
@@ -19,7 +20,11 @@ function Cart() {
     }
 
     function handleToPay() {
-        setFinishSHopping(!finishShopping);
+        if (cart.length > 0) {
+            navigate('/payment')
+        } else {
+            return null;
+        }
     }
 
     return (
@@ -64,10 +69,6 @@ function Cart() {
                                     </div>
                                 </div>
                                 <button className="mt-5 mb-3 px-4 py-2 text-white font-bold bg-green-700 rounded-xl cursor-pointer hover:text-green-700 hover:bg-transparent hover:font-bold hover:underline" onClick={() => handleToPay()}>Process Payment</button>
-                                {
-                                    finishShopping && <div className="absolute top-0 right-0 w-full h-full"> < CheckoutForm />
-                                    </div>
-                                }
                             </div>
                         </div>
                     </div>
