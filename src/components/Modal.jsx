@@ -77,9 +77,8 @@ function Modal({ modalOpen, handleClose, item }) {
     }
 
     function addItemToFavorites(item) {
-        const isAlreadyFavorite = favoriteItems.some(favorite => favorite.id === item.id);
-
-        if (!isAlreadyFavorite) {
+        const isAlreadyInFavorite = favoriteItems.some(favorite => favorite.id === item.id);
+        if (!isAlreadyInFavorite) {
             dispatch(addToFavorite(item));
             toast.success('Added To Favorite!', {
                 position: "top-right",
