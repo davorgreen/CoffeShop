@@ -77,29 +77,35 @@ function Modal({ modalOpen, handleClose, item }) {
     }
 
     function addItemToFavorites(item) {
-        dispatch(addToFavorite(item));
-        toast.success('Added To Favorite!', {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-            transition: Bounce,
-        });
+        const isAlreadyFavorite = favoriteItems.some(favorite => favorite.id === item.id);
+
+        if (!isAlreadyFavorite) {
+            dispatch(addToFavorite(item));
+            toast.success('Added To Favorite!', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
+        }
     }
 
 
     useEffect(() => {
-        favoriteItems.find((favorite) => {
-            if (favorite.id === id) {
-                setFavoriteIcon(favorite.id);
-                return;
-            }
-        })
-    }, [favoriteItems]);
+        const favorite = favoriteItems.find(favorite => favorite.id === id);
+        if (favorite) {
+            setFavoriteIcon(favorite.id);
+
+        } else {
+            setFavoriteIcon(null);
+        }
+    }, [favoriteItems, id]);
+
 
 
     useEffect(() => {
@@ -109,11 +115,11 @@ function Modal({ modalOpen, handleClose, item }) {
                 return;
             }
         })
-    }, [cart])
+    }, [cart, id])
 
 
-    return (
-        <div>{modalOpen && (
+    return (s
+        < div > { modalOpen && (
             <div className="absolute right-0 top-0 bottom-0 left-0 ">
                 <div className="w-full h-full bg-green-200 overflow-hidden flex flex-col justify-center items-center gap-4">
                     <button onClick={() => handleClose()}><IoMdCloseCircle size={30} color="green" /></button>
@@ -124,18 +130,24 @@ function Modal({ modalOpen, handleClose, item }) {
                     <div className="text-gray-700 font-bold">Grind Option: <span className="underline">{grind_option}</span> </div>
                     <div className="text-gray-700 font-bold">Roast Level: <span className="font-bold">{roast_level}</span></div>
                     <div className="flex gap-5">
-                        <button className="flex flex-row items-center gap-1 px-4 py-2 bg-green-400 text-white font-bold rounded-xl hover:text-green-900 hover:underline hover:bg-transparent " onClick={() => addItemToFavorites(item)}>Add To Favorites{favoriteIcon === id ? <FaRegHeart size={20} color="red" /> : <FaRegHeart size={20} color="green" />}</button>
+                        <button className="flex flex-row items-center gap-1 px-4 py-2 bg-green-400 text-white font-bold rounded-xl hover:text-green-900 hover:underline hover:bg-transparent " onClick={() => {
+                            if (favoriteIcon) {
+                                navigate('/favorites')
+                            } else {
+                                addItemToFavorites(item)
+                            }
+                        }} >{favoriteIcon ? 'View Favorites' : 'Add To Favorites'}{favoriteIcon === id ? <FaRegHeart size={20} color="red" /> : <FaRegHeart size={20} color="green" />}</button>
                         <button className="flex flex-row items-center gap-1 px-6 py-3 bg-green-400 text-white font-bold rounded-xl hover:text-green-900 hover:underline hover:bg-transparent " onClick={() => {
                             if (inCart) {
                                 navigate('/cart');
                             } else {
                                 addItemToCart(item);
                             }
-                        }} > <Link to={''}> {inCart ? 'View Cart' : 'Add To Cart'}</Link>{inCart === id ? <MdOutlineShoppingCart size={20} color="red" /> : <MdOutlineShoppingCart size={20} color="green" />}</button>
+                        }} >{inCart ? 'View Cart' : 'Add To Cart'}{inCart === id ? <MdOutlineShoppingCart size={20} color="red" /> : <MdOutlineShoppingCart size={20} color="green" />}</button>
                     </div>
                 </div>
             </div>)
-        }</div >
+        }</ >
     )
 }
 
