@@ -141,7 +141,7 @@ const ContactUs = () => {
                 <p className="text-xl font-bold text-green-500 mb-5">
                     At GreenGo, our customers are our top priority. Whether you have a question, a concern, or simply want to share your feedback, we are always here to help. Feel free to reach out to us through any of the following methods:</p>
                 <p className="text-lg text-green-700"><strong>Phone:</strong> +1 234 567 890</p>
-                <p className="text-lg text-green-700"><strong>Email:</strong> contact@greengo.com</p>
+                <p className="text-lg text-green-700"><strong>Email:</strong> contact@greengocoffeeshop.com</p>
                 <p className="text-lg text-green-700"><strong>Office Hours:</strong> Mon - Sun, 8am - 8pm</p>
             </div>
 

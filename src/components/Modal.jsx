@@ -117,7 +117,7 @@ function Modal({ modalOpen, handleClose, item }) {
     }, [cart, id])
 
 
-    return <> (
+    return <>
         {modalOpen && (
             <div className="absolute right-0 top-0 bottom-0 left-0 ">
                 <div className="w-full h-full bg-green-200 overflow-hidden flex flex-col justify-center items-center gap-4">
@@ -147,7 +147,7 @@ function Modal({ modalOpen, handleClose, item }) {
                 </div>
             </div>)
         }
-        )</>
+    </>
 }
 
 
