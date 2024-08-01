@@ -14,7 +14,7 @@ const NewsletterModal = ({ isTrue, onClose }) => {
         }
     }, [isSubscribed]);
 
-    function handleEmailSubmit(e) {
+    function handleEmailSubmit() {
         localStorage.setItem('newsletterEmail', JSON.stringify(email));
         setEmail('');
         setIsSubscribed(true);
