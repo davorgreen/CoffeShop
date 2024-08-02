@@ -1,21 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, } from "react-router-dom";
 //icons
 import { MdOutlineShoppingCart } from "react-icons/md";
-import { toast } from "react-toastify";
-import { setCartClear } from "../slices/CartSlice";
 import { CiCircleRemove } from 'react-icons/ci';
+import { setCartClear } from "../slices/CartSlice";
+import { toast, ToastContainer } from "react-toastify";
 
 function Payment() {
     const [currentCoupon, setCurrentCoupon] = useState(null);
     const [paymentMethod, setPaymentMethod] = useState('');
-    const [isCardOpen, setIsCardOpen] = useState(false);
     const [form, setForm] = useState({ fullName: '', address: '', email: '', phoneNumber: '', paymentMethod: '' });
-    const navigate = useNavigate();
     const { totalPrice } = useSelector((state) => state.cartStore);
     const coupon = useRef();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
+
 
     function handleCoupon() {
         setCurrentCoupon(coupon.current.value);
@@ -26,44 +26,30 @@ function Payment() {
         const selectMethod = e.target.value;
         setPaymentMethod(selectMethod);
         setForm(prevForm => ({ ...prevForm, paymentMethod: selectMethod }));
-        if (selectMethod === 'card') {
-            setIsCardOpen(true);
-        } else {
-            setIsCardOpen(false);
-        }
     }
 
-    function handleCardClose() {
-        setIsCardOpen(false);
-    }
 
     function handleChange(e) {
         const { name, value } = e.target;
         setForm(prevForm => ({ ...prevForm, [name]: value }));
     }
 
-    function handleProcessPayment() {
-        if (paymentMethod === 'cash') {
-            dispatch(setCartClear());
-            toast.success('You pay on delivery');
-            navigate('/');
-        } else if (paymentMethod === 'card') {
-            setIsCardOpen(true);
-        } else {
-            toast.error('Please select a payment method');
-        }
-    }
-
     function handleSubmit(e) {
         e.preventDefault();
-        handleProcessPayment();
         localStorage.setItem('orderForm', JSON.stringify(form));
+        toast.success('Your order has been sent!');
         setForm({ fullName: '', address: '', email: '', phoneNumber: '', paymentMethod: '' });
+        dispatch(setCartClear());
+        navigate('/');
+    }
+
+    function handleCardClose() {
+        navigate('/payment');
     }
 
     return (
         <div className="flex items-center justify-center m-5">
-            <div className={`bg-green-300 p-8 rounded shadow-2xl w-1/3 ${isCardOpen ? 'blur' : ''}`}>
+            <div className="bg-green-300 p-8 rounded shadow-2xl w-1/3" >
                 <Link to={'/cart'}>
                     <button className="px-4 py-2 mb-2 bg-green-600 rounded text-white flex gap-1">
                         <MdOutlineShoppingCart size={20} /> Back To Cart
@@ -140,6 +126,29 @@ function Payment() {
                             <option value="cash">Cash on Delivery</option>
                         </select>
                     </div>
+                    {paymentMethod === 'card' && (
+                        <div className="flex items-center justify-center mb-4 bg-green-300">
+                            <div className="bg-green-300 p-8 rounded shadow-2xl w-full">
+                                <span className="close" onClick={handleCardClose} ><CiCircleRemove size={30} color="red" /></span>
+                                <h2 className="text-xl font-bold mb-6 text-center">Enter Card Details</h2>
+                                <form>
+                                    <div>
+                                        <label htmlFor="cardNumber" className="block font-bold text-gray-700">Card Number</label>
+                                        <input type="text" id="cardNumber" placeholder="Card Number" className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500" pattern="(?<!\d)\d{16}(?!\d)|(?<!\d[ _-])(?<!\d)\d{4}(?:[_ -]\d{4}){3}(?![_ -]?\d)" required />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="cvc" className="block font-bold text-gray-700">CVC</label>
+                                        <input type="text" id="cvc" placeholder="CVC" className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500" pattern="^\d{3,4}$" required />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="expiryDate" className="block font-bold text-gray-700">Expiration Date</label>
+                                        <input type="text" id="expiryDate" placeholder="MM/YY" className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500" pattern="^(0[1-9]|1[0-2])\/?([0-9]{2})$" required />
+                                    </div>
+                                    <button type="submit" className="w-full mt-3 bg-green-600 text-white p-2 rounded hover:bg-green-700 transition-all">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    )}
                     <div className="mb-4">
                         <label className="flex items-center">
                             <input type="checkbox" className="form-checkbox text-green-600 h-5 w-5" required />
@@ -168,29 +177,6 @@ function Payment() {
                     </button>
                 </form>
             </div>
-            {isCardOpen && (
-                <div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50 z-50">
-                    <div className="bg-green-300 p-8 rounded shadow-2xl w-1/3">
-                        <span className="close" onClick={handleCardClose}><CiCircleRemove size={30} color="red" /></span>
-                        <h2 className="text-xl font-bold mb-6 text-center">Enter Card Details</h2>
-                        <form>
-                            <div>
-                                <label htmlFor="cardNumber" className="block font-bold text-gray-700">Card Number</label>
-                                <input type="text" id="cardNumber" placeholder="Card Number" className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500" pattern="(?<!\d)\d{16}(?!\d)|(?<!\d[ _-])(?<!\d)\d{4}(?:[_ -]\d{4}){3}(?![_ -]?\d)" required />
-                            </div>
-                            <div>
-                                <label htmlFor="cvc" className="block font-bold text-gray-700">CVC</label>
-                                <input type="text" id="cvc" placeholder="CVC" className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500" />
-                            </div>
-                            <div>
-                                <label htmlFor="expiryDate" className="block font-bold text-gray-700">Expiration Date</label>
-                                <input type="text" id="expiryDate" placeholder="MM/YY" className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500" />
-                            </div>
-                            <button type="submit" className="w-full mt-3 bg-green-600 text-white p-2 rounded hover:bg-green-700 transition-all">Submit</button>
-                        </form>
-                    </div>
-                </div>
-            )}
         </div>
     );
 }

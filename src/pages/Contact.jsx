@@ -101,14 +101,18 @@ const ContactUs = () => {
                             onChange={handleChange}
                             placeholder="Your Name"
                             className="w-full p-2 border border-green-300 rounded"
+                            required
                         />
                         <input
                             type="email"
                             name="email"
                             value={form.email}
+                            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                            title="Enter a valid email address (e.g., example@example.com)"
                             onChange={handleChange}
                             placeholder="Your Email"
                             className="w-full p-2 border border-green-300 rounded"
+                            required
                         />
                         <input
                             type="text"
@@ -117,6 +121,7 @@ const ContactUs = () => {
                             onChange={handleChange}
                             placeholder="Subject"
                             className="w-full p-2 border border-green-300 rounded"
+                            required
                         />
                         <textarea
                             name="message"
@@ -124,6 +129,7 @@ const ContactUs = () => {
                             onChange={handleChange}
                             placeholder="Message"
                             className="w-full p-2 border border-green-300 rounded"
+                            required
                         ></textarea>
                         <button
                             type="submit"
