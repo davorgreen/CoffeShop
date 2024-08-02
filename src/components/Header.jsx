@@ -22,7 +22,7 @@ function Header() {
 
     }
     return (
-        <div className="container mx-auto items-center md:shadow-2xl  md:bg-green-300  lg:w-10/12  lg:h-28 lg:flex lg:justify-between">
+        <div className="container mx-auto md:shadow-2xl md:bg-green-300 items-center lg:w-10/12  lg:h-28 lg:flex lg:gap-5 lg:justify-between">
             <div className="flex flex-row  justify-center items-center">
                 <img src={image} alt="aaa" className="w-28 h-28 " />
                 <Link to={'/'}><h2 className="font-bold text-5xl ml-4 text-green-500">GreenGo</h2></Link>
@@ -36,7 +36,7 @@ function Header() {
                     <Link to={'/contact'} className=' hover:text-orange-300 focus:underline focus:decoration-orange-400 transition-all '>Contact Us</Link>
                 </ul>
             </div>
-            <div className='flex gap-5 mr-5 justify-center '>
+            <div className='flex gap-5 mr-5 justify-center mt-5 lg:mt-0 '>
                 <div className='flex flex-row hover:text-orange-300 focus:underline focus:decoration-orange-400 transition-all font-bold text-green-800 text-md'>
                     <FaRegUser size={28} color='green' />
                     <SignedOut>
