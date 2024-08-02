@@ -58,8 +58,14 @@ const CartSlice = createSlice({
 
             state.cart = copyArray;
         },
-    },
+        setCartClear: (state) => {
+            state.cart = [],
+                state.totalPrice = 0,
+                state.totalProduct = 0;
+        },
+    }
 })
+
 
 function subTotal(arr) {
     const total = arr.reduce((acc, curr) => {
@@ -69,5 +75,5 @@ function subTotal(arr) {
     return Math.round(total * 100) / 100;
 }
 
-export const { addToCart, setPriceHandler, removeProductHandler } = CartSlice.actions;
+export const { addToCart, setPriceHandler, removeProductHandler, setCartClear } = CartSlice.actions;
 export default CartSlice.reducer;
