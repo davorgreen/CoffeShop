@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import CommentSlider from "../components/CommentSlider";
 import SimpleSlider from "../components/SimpleSlider";
-
-
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import "leaflet/dist/leaflet.css";
+import locations from "../data/locations";
 
 
 function Home() {
@@ -47,6 +48,79 @@ function Home() {
             </div>
             <SimpleSlider />
             <CommentSlider />
+            <div className="container mx-auto flex flex-col justify-center items-center m-8">
+                <h3 className="text-center font-bold text-3xl m-5 text-green-700">Our Location</h3>
+                <div className="m-5">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {locations.map((location, index) => (
+                            <div key={index} className="bg-green-100 p-4 rounded-lg shadow-lg">
+                                <h2 className="text-2xl font-bold text-green-800 mb-4 text-center">{location.city}</h2>
+                                <ul className="list-none text-green-700">
+                                    {location.addresses.map((loc, idx) => (
+                                        <li key={idx} className="mb-2">
+                                            <span className="flex font-bold justify-center text-green-700">{loc.address}</span>
+                                            <span className="text-sm text-green-600">
+                                                Latitude: {loc.lat}, Longitude: {loc.lng}
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <MapContainer center={[45.2551, 19.8458]} zoom={13} scrollWheelZoom={false}>
+                    <TileLayer
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    <Marker position={[46.0985, 19.6712]}>
+                        <Popup className="font-semibold text-green-800">
+                            Matije Gupca 24, Subotica
+                        </Popup>
+                    </Marker>
+                    <Marker position={[46.0988, 19.6700]}>
+                        <Popup className="font-semibold text-green-800">
+                            Korzo 7, Subotica
+                        </Popup>
+                    </Marker>
+                    <Marker position={[46.0728, 19.6429]}>
+                        <Popup className="font-semibold text-green-800">
+                            Somborski put 39, Subotica
+                        </Popup>
+                    </Marker>
+                    <Marker position={[45.254, 19.8317]}>
+                        <Popup className="font-semibold text-green-800">
+                            Bulevar oslobođenja 96, Novi Sad
+                        </Popup>
+                    </Marker>
+                    <Marker position={[45.2551, 19.8458]}>
+                        <Popup className="font-semibold text-green-800">
+                            Zmaj Jovina 22, Novi Sad
+                        </Popup>
+                    </Marker>
+                    <Marker position={[45.2461, 19.8396]}>
+                        <Popup className="font-semibold text-green-800">
+                            Narodnog Fronta 23, Novi Sad
+                        </Popup>
+                    </Marker>
+                    <Marker position={[44.8176, 20.4572]}>
+                        <Popup className="font-semibold text-green-800">
+                            Knez Mihailova 32, Beograd
+                        </Popup>
+                    </Marker>
+                    <Marker position={[44.8053, 20.4781]}>
+                        <Popup className="font-semibold text-green-800">
+                            Bulevar kralja Aleksandra 150, Beograd
+                        </Popup>
+                    </Marker>
+                    <Marker position={[44.8238, 20.4582]}>
+                        <Popup className="font-semibold text-green-800">
+                            Cara Dušana 60, Beograd
+                        </Popup>
+                    </Marker>
+                </MapContainer>
+            </div>
 
 
         </div>

@@ -5,7 +5,7 @@ import { Link, useNavigate, } from "react-router-dom";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { CiCircleRemove } from 'react-icons/ci';
 import { setCartClear } from "../slices/CartSlice";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 function Payment() {
     const [currentCoupon, setCurrentCoupon] = useState(null);
