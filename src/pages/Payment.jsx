@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState } from "react";
-import { Link, useNavigate, } from "react-router-dom";
+import { json, Link, useNavigate, } from "react-router-dom";
 //icons
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { CiCircleRemove } from 'react-icons/ci';
@@ -11,6 +11,7 @@ function Payment() {
     const [currentCoupon, setCurrentCoupon] = useState(null);
     const [paymentMethod, setPaymentMethod] = useState('');
     const [form, setForm] = useState({ fullName: '', address: '', email: '', phoneNumber: '', paymentMethod: '' });
+    const [cardForm, setCardForm] = useState({ cardNumber: '', CVC: '', expirationDate: '' });
     const { totalPrice } = useSelector((state) => state.cartStore);
     const coupon = useRef();
     const navigate = useNavigate();
@@ -25,13 +26,18 @@ function Payment() {
     function handlePaymentMethod(e) {
         const selectMethod = e.target.value;
         setPaymentMethod(selectMethod);
-        setForm(prevForm => ({ ...prevForm, paymentMethod: selectMethod }));
+        setForm(prevForm => ({ ...prevForm, paymentMethod: selectMethod, totalPrice: totalPrice }));
     }
 
 
     function handleChange(e) {
         const { name, value } = e.target;
         setForm(prevForm => ({ ...prevForm, [name]: value }));
+    }
+
+    function handleCardChange(e) {
+        const { name, value } = e.target;
+        setCardForm(prevForm => ({ ...prevForm, [name]: value }));
     }
 
     function handleSubmit(e) {
@@ -41,6 +47,13 @@ function Payment() {
         setForm({ fullName: '', address: '', email: '', phoneNumber: '', paymentMethod: '' });
         dispatch(setCartClear());
         navigate('/');
+    }
+
+    function handleCardSubmit(e) {
+        e.preventDefault();
+        localStorage.setItem('cardForm', JSON.stringify(cardForm));
+        toast.success('Your card has been sent!');
+        setCardForm({ cardNumber: '', CVC: '', expirationDate: '' });
     }
 
     function handleCardClose() {
@@ -131,18 +144,21 @@ function Payment() {
                             <div className="bg-green-300 p-8 rounded shadow-2xl w-full">
                                 <span className="close" onClick={handleCardClose} ><CiCircleRemove size={30} color="red" /></span>
                                 <h2 className="text-xl font-bold mb-6 text-center">Enter Card Details</h2>
-                                <form>
+                                <form onSubmit={handleCardSubmit}>
                                     <div>
                                         <label htmlFor="cardNumber" className="block font-bold text-gray-700">Card Number</label>
-                                        <input type="text" id="cardNumber" placeholder="Card Number" className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500" pattern="(?<!\d)\d{16}(?!\d)|(?<!\d[ _-])(?<!\d)\d{4}(?:[_ -]\d{4}){3}(?![_ -]?\d)" required />
+                                        <input type="text" name="cardNumber"
+                                            value={form.cardNumber} placeholder="Card Number" className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500" pattern="(?<!\d)\d{16}(?!\d)|(?<!\d[ _-])(?<!\d)\d{4}(?:[_ -]\d{4}){3}(?![_ -]?\d)" required onChange={handleCardChange} />
                                     </div>
                                     <div>
                                         <label htmlFor="cvc" className="block font-bold text-gray-700">CVC</label>
-                                        <input type="text" id="cvc" placeholder="CVC" className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500" pattern="^\d{3,4}$" required />
+                                        <input type="text" name="CVC"
+                                            value={form.CVC} placeholder="CVC" className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500" pattern="^\d{3,4}$" required onChange={handleCardChange} />
                                     </div>
                                     <div>
                                         <label htmlFor="expiryDate" className="block font-bold text-gray-700">Expiration Date</label>
-                                        <input type="text" id="expiryDate" placeholder="MM/YY" className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500" pattern="^(0[1-9]|1[0-2])\/?([0-9]{2})$" required />
+                                        <input type="text" name="expirationDate"
+                                            value={form.expirationDate} placeholder="MM/YY" className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500" pattern="^(0[1-9]|1[0-2])\/?([0-9]{2})$" required onChange={handleCardChange} />
                                     </div>
                                     <button type="submit" className="w-full mt-3 bg-green-600 text-white p-2 rounded hover:bg-green-700 transition-all">Submit</button>
                                 </form>

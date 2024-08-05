@@ -58,10 +58,7 @@ function Home() {
                                 <ul className="list-none text-green-700">
                                     {location.addresses.map((loc, idx) => (
                                         <li key={idx} className="mb-2">
-                                            <span className="flex font-bold justify-center text-green-700">{loc.address}</span>
-                                            <span className="text-sm text-green-600">
-                                                Latitude: {loc.lat}, Longitude: {loc.lng}
-                                            </span>
+                                            <span className="flex font-bold text-xl justify-center text-green-700">{loc.address}</span>
                                         </li>
                                     ))}
                                 </ul>
