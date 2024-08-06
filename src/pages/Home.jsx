@@ -15,8 +15,8 @@ function Home() {
                 style={{ backgroundImage: 'url(https://images.yummy.ph/yummy/uploads/2020/01/pokko-cafe-marikina-2.png)' }}
             >
                 <div className="bg-black bg-opacity-50 absolute inset-0 z-0"></div>
-                <div className="relative z-10 text-white p-8 ">
-                    <h1 className="text-5xl font-bold mb-4 hidden md:block">Welcome to GreenGo Coffee Shop</h1>
+                <div className="relative z-10 text-white p-8">
+                    <h1 className="text-5xl font-bold mb-4 hidden lg:block">Welcome to GreenGo Coffee Shop</h1>
                     <p className="text-2xl mb-8">Experience the best coffee in town, brewed to perfection.</p>
                     <Link to="/shop">
                         <button className="bg-green-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-green-700">
@@ -55,9 +55,9 @@ function Home() {
                         {locations.map((location, index) => (
                             <div key={index} className="bg-green-100 p-4 rounded-lg shadow-lg">
                                 <h2 className="text-2xl font-bold text-green-800 mb-4 text-center">{location.city}</h2>
-                                <ul className="list-none text-green-700">
+                                <ul className="list-none text-green-700 ">
                                     {location.addresses.map((loc, idx) => (
-                                        <li key={idx} className="mb-2">
+                                        <li key={idx} className="mb-2 text-center">
                                             <span className="flex font-bold text-xl justify-center text-green-700">{loc.address}</span>
                                         </li>
                                     ))}
