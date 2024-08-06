@@ -41,7 +41,7 @@ function Header() {
                     }
                 </button>
             </div>
-            <div className='container mx-auto m-3 flex flex-col justify-center items-center border bg-green-300 rounded-xl w-1/3 h-full md:flex-row md:border-none md:items-center md:gap-6 md:w-full'>
+            <div className='container mx-auto m-3 flex flex-col justify-center items-center border bg-green-300 rounded-xl w-1/3 h-full md:flex-row md:border-none md:items-center md:gap-6 md:w-2/3'>
                 <div className={`flex justify-center md:flex flex-wrap text-base py-3 lg:ml-5 ${hamburgerMenu ? 'block' : 'hidden'}`}>
                     <ul className='flex flex-col items-center md:flex-row gap-5 font-bold text-green-800 text-xl'>
                         <Link to={'/'} className=' hover:text-orange-300 focus:underline focus:decoration-orange-400 transition-all '>Home</Link>

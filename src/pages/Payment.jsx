@@ -1,32 +1,38 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useRef, useState } from "react";
-import { json, Link, useNavigate, } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, useNavigate, } from "react-router-dom";
 //icons
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { CiCircleRemove } from 'react-icons/ci';
-import { setCartClear } from "../slices/CartSlice";
+import { applyCoupon, setCartClear } from "../slices/CartSlice";
 import { toast } from "react-toastify";
 
 function Payment() {
     const [currentCoupon, setCurrentCoupon] = useState(null);
     const [paymentMethod, setPaymentMethod] = useState('');
-    const [form, setForm] = useState({ fullName: '', address: '', email: '', phoneNumber: '', paymentMethod: '' });
+    const [form, setForm] = useState({ fullName: '', address: '', email: '', phoneNumber: '', paymentMethod: '', totalPrice: '' });
     const [cardForm, setCardForm] = useState({ cardNumber: '', CVC: '', expirationDate: '' });
-    const { totalPrice } = useSelector((state) => state.cartStore);
+    const { totalPrice, discount } = useSelector((state) => state.cartStore);
     const coupon = useRef();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
+    const total = (totalPrice - discount).toFixed(2);
 
     function handleCoupon() {
         setCurrentCoupon(coupon.current.value);
-        coupon.current.value = '';
     }
+
+    useEffect(() => {
+        if (currentCoupon) {
+            dispatch(applyCoupon(currentCoupon));
+            setCurrentCoupon(null);
+        }
+    }, [currentCoupon, dispatch, discount]);
 
     function handlePaymentMethod(e) {
         const selectMethod = e.target.value;
         setPaymentMethod(selectMethod);
-        setForm(prevForm => ({ ...prevForm, paymentMethod: selectMethod, totalPrice: totalPrice }));
+        setForm(prevForm => ({ ...prevForm, paymentMethod: selectMethod, totalPrice: discount ? total : totalPrice }));
     }
 
 
@@ -44,7 +50,7 @@ function Payment() {
         e.preventDefault();
         localStorage.setItem('orderForm', JSON.stringify(form));
         toast.success('Your order has been sent!');
-        setForm({ fullName: '', address: '', email: '', phoneNumber: '', paymentMethod: '' });
+        setForm({ fullName: '', address: '', email: '', phoneNumber: '', paymentMethod: '', totalPrice: '' });
         dispatch(setCartClear());
         navigate('/');
     }
@@ -183,7 +189,7 @@ function Payment() {
                     </div>
                     <div className="flex flex-col justify-center items-center">
                         <p className="text-base font-medium">Total Price:</p>
-                        <p className="text-xl font-bold">${currentCoupon === 'green' ? (totalPrice - (totalPrice * 0.1)).toFixed(2) : totalPrice.toFixed(2)}</p>
+                        <p className="text-xl font-bold">${discount ? total : totalPrice}</p>
                     </div>
                     <button
                         type="submit"

@@ -6,6 +6,8 @@ const CartSlice = createSlice({
         cart: [],
         totalProduct: 0,
         totalPrice: 0,
+        discount: 0,
+        currentCoupon: '',
     },
     reducers: {
         addToCart: (state, action) => {
@@ -63,6 +65,17 @@ const CartSlice = createSlice({
                 state.totalPrice = 0,
                 state.totalProduct = 0;
         },
+        applyCoupon: (state, action) => {
+            const currentCoupon = action.payload;
+            if (currentCoupon === 'green') {
+                state.currentCoupon = currentCoupon;
+                state.discount = (state.totalPrice * 0.10).toFixed(2);
+
+            } else {
+                state.discount = 0;
+                state.coupon = '';
+            }
+        }
     }
 })
 
@@ -75,5 +88,5 @@ function subTotal(arr) {
     return Math.round(total * 100) / 100;
 }
 
-export const { addToCart, setPriceHandler, removeProductHandler, setCartClear } = CartSlice.actions;
+export const { addToCart, setPriceHandler, removeProductHandler, setCartClear, applyCoupon } = CartSlice.actions;
 export default CartSlice.reducer;
