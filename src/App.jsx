@@ -20,6 +20,7 @@ import ShippingReturn from './pages/ShippingReturn';
 import TermsCondition from './pages/TermsCondition';
 import OurTeam from './pages/OurTeam';
 import Payment from './pages/Payment';
+import CheckUserLogin from './components/CheckUserLogin';
 
 
 
@@ -44,6 +45,7 @@ function App() {
           <Route path='/shippingreturn' element={<ShippingReturn />} />
           <Route path='/termscondition' element={<TermsCondition />} />
           <Route path='/payment' element={<Payment />} />
+          <Route path='/checkuserlogin' element={<CheckUserLogin />} />
         </Routes>
         <Footer />
         <ToastContainer />

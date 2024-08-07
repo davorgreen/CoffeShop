@@ -48,8 +48,6 @@ function Shop() {
                     wrapperClass=""
                 /></div>)}
             </div>
-
-
         </div>
     )
 }

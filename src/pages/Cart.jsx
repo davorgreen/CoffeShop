@@ -1,16 +1,24 @@
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router";
 import CartProductComponent from '../components/CartProductComponent'
+import { toast } from "react-toastify";
+import { useUser } from "@clerk/clerk-react";
 
 
 
 
 function Cart() {
+    const { isSignedIn } = useUser();
     const { totalPrice, cart } = useSelector((state) => state.cartStore);
     const navigate = useNavigate();
 
     function handleToPay() {
         if (cart.length > 0) {
+            if (!isSignedIn) {
+                toast.error('You need to be logged in to proceed with the payment.');
+                navigate('/checkuserlogin');
+                return;
+            }
             navigate('/payment')
         } else {
             return null;
