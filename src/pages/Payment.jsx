@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, } from "react-router-dom";
 //icons
 import { MdOutlineShoppingCart } from "react-icons/md";
-import { applyCoupon, setCartClear } from "../slices/CartSlice";
+import { applyCoupon, setCartClear, resetDiscount, } from "../slices/CartSlice";
 import { toast } from "react-toastify";
 
 const Payment = () => {
-    const [currentCoupon, setCurrentCoupon] = useState(null);
     const [paymentMethod, setPaymentMethod] = useState('');
+    const [coupon, setCoupon] = useState('');
     const [form, setForm] = useState({
         fullName: '',
         address: '',
@@ -18,25 +18,28 @@ const Payment = () => {
         totalPrice: '',
         cardNumber: '',
         CVC: '',
-        expirationDate: ''
+        expirationDate: '',
     });
     const { totalPrice, discount } = useSelector((state) => state.cartStore);
-    const coupon = useRef();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const total = (totalPrice - discount).toFixed(2);
 
-    function handleCoupon() {
-        setCurrentCoupon(coupon.current.value);
-        setCurrentCoupon('');
+    function handleCoupon(e) {
+        console.log(e.target.value)
+        setCoupon(e.target.value);
+    }
+
+    function handleCouponApply() {
+        console.log(coupon)
+        dispatch(applyCoupon(coupon));
     }
 
     useEffect(() => {
-        if (currentCoupon) {
-            dispatch(applyCoupon(currentCoupon));
-            setCurrentCoupon(null);
-        }
-    }, [currentCoupon, dispatch, discount]);
+        setForm(prevForm => ({
+            ...prevForm,
+            totalPrice: totalPrice,
+        }));
+    }, [discount, totalPrice]);
 
     const handlePaymentMethod = (e) => {
         const selectMethod = e.target.value;
@@ -54,8 +57,7 @@ const Payment = () => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        const finalTotalPrice = discount ? total : totalPrice;
-        localStorage.setItem('orderForm', JSON.stringify({ ...form, totalPrice: finalTotalPrice }));
+        localStorage.setItem('orderForm', JSON.stringify({ ...form, totalPrice: totalPrice }));
         toast.success('Your order has been sent!');
         setForm({
             fullName: '',
@@ -69,8 +71,10 @@ const Payment = () => {
             expirationDate: ''
         });
         dispatch(setCartClear());
+        dispatch(resetDiscount());
         navigate('/');
     }
+
 
     return (
         <div className="flex items-center justify-center m-5">
@@ -183,15 +187,15 @@ const Payment = () => {
                     <div className="flex flex-col items-center gap-2">
                         <p className="text-sm font-semibold text-slate-900">Take your discount 10%</p>
                         <div className="flex flex-row items-center justify-center">
-                            <input ref={coupon} type="text" placeholder="Insert your coupon" className="px-2 py-1 rounded-full outline-none w-full focus:outline-none focus:ring-2 focus:ring-green-500 text-center" />
-                            <button type="button" className="px-2 py-1" onClick={handleCoupon}>
+                            <input value={coupon} type="text" placeholder="Insert your coupon" className="px-2 py-1 rounded-full outline-none w-full focus:outline-none focus:ring-2 focus:ring-green-500 text-center" onChange={handleCoupon} />
+                            <button type="button" className="px-2 py-1" onClick={handleCouponApply}>
                                 <span className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-full text-white">Apply</span>
                             </button>
                         </div>
                     </div>
                     <div className="flex flex-col justify-center items-center">
                         <p className="text-base font-medium">Total Price:</p>
-                        <p className="text-xl font-bold">${discount ? total : totalPrice}</p>
+                        <p className="text-xl font-bold">${totalPrice.toFixed(2)}</p>
                     </div>
                     <button
                         type="submit"

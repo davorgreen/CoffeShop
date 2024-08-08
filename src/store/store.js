@@ -27,7 +27,7 @@ const loadCartState = () => {
     }
 };
 
-//
+//load the inital state from ls
 const preloadedState = {
     cartStore: loadCartState()
 };
@@ -41,7 +41,7 @@ const store = configureStore({
     preloadedState
 });
 
-
+//update to store changes
 store.subscribe(() => {
     saveCartState(store.getState().cartStore);
 });
