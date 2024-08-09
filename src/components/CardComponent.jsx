@@ -22,22 +22,24 @@ function CardComponent({ item, label, handleOpen, handleClose, modalOpen, handle
 
 
     return (
-        <div className=
-            "flex flex-col gap-4  mt-10 p-5 md:flex-row justify-center items-center bg-green-200 shadow-2xl rounded-lg overflow-hidden m-4 relative">
+        <div className="gap-4 mt-10 p-5 md:flex-row justify-center items-center bg-green-200 shadow-2xl rounded-lg overflow-hidden m-4 relative">
             {/* Left side */}
-            <div className="flex justify-center items-center" >
-                <img src={image_url} alt={name} className="w-80 h-80 object-cover " />
-            </div >
+            <div className="flex justify-center items-center">
+                <img src={image_url} alt={name} className="w-80 h-80 object-cover" />
+            </div>
             {/* Right side */}
-            <div className="flex flex-col p-4 gap-2 justify-center items-center" >
-                <div className="text-xl text-green-800 font-bold underline">{name}</div>
-                <div className="text-gray-700 font-bold">{description}</div>
-                <button className="mt-5 px-4 py-2 text-white font-bold bg-green-700 rounded-xl cursor-pointer hover:text-green-700 hover:bg-transparent hover:font-bold hover:underline" onClick={handleClick} >{label}</button>
-            </div >
+            <div className="flex flex-col p-4 gap-2 justify-between items-center h-full" style={{ height: '250px' }}>
+                <div>
+                    <div className="text-xl text-green-800 font-bold underline">{name}</div>
+                    <div className="text-gray-700 font-bold">{description}</div>
+                </div>
+                <button className="px-4 py-2 text-white font-bold bg-green-700 rounded-xl cursor-pointer hover:text-green-700 hover:bg-transparent hover:font-bold hover:underline" onClick={handleClick}>{label}</button>
+            </div>
             {label === 'View Details' && (
                 <Modal modalOpen={modalOpen} handleClose={handleClose} item={item} />
             )}
         </div>
+
     )
 }
 

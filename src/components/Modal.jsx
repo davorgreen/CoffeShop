@@ -120,7 +120,7 @@ function Modal({ modalOpen, handleClose, item }) {
     return <>
         {modalOpen && (
             <div className="absolute right-0 top-0 bottom-0 left-0 ">
-                <div className="w-full h-full bg-green-200 overflow-hidden flex flex-col justify-center items-center gap-4">
+                <div className="w-full h-full bg-green-200 overflow-hidden flex flex-col justify-center gap-10 items-center ">
                     <button onClick={() => handleClose()}><IoMdCloseCircle size={30} color="green" /></button>
                     <div className="text-xl text-green-800 font-bold underline">{name}</div>
                     <div className="text-gray-900 text-base font-bold">Price: <span className="font-bold">${price}</span> </div>
