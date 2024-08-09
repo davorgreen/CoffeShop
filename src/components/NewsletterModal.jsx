@@ -9,7 +9,7 @@ const NewsletterModal = ({ isTrue, onClose }) => {
 
     useEffect(() => {
         if (isSubscribed) {
-            toast.success("Successfully subscribed to the newsletter!");
+            toast.success("Successfully subscribed to the newsletter! Your coupon is 'green' ");
             setIsSubscribed(false);
         }
     }, [isSubscribed]);
@@ -32,18 +32,23 @@ const NewsletterModal = ({ isTrue, onClose }) => {
                     <RxCrossCircled size={30} />
                 </button>
                 <h2 className="text-2xl font-bold mb-4">Sign Up for Our Newsletter</h2>
-                <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
-                    className="w-full p-2 border border-gray-300 rounded mb-4"
-                />
-                <button onClick={() => handleEmailSubmit()}
-                    className="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600 transition-all"
-                >
-                    Subscribe
-                </button>
+                <form onSubmit={handleEmailSubmit}>
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Enter your email"
+                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                        title="Enter a valid email address (e.g., example@example.com)"
+                        required
+                        className="w-full p-2 border border-gray-300 rounded mb-4"
+                    />
+                    <button type="submit"
+                        className="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600 transition-all"
+                    >
+                        Subscribe
+                    </button>
+                </form>
             </div>
         </div>
     );
