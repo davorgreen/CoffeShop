@@ -38,7 +38,7 @@ function Footer() {
                         </div>
                         <div className="w-2/6">
                             <h1 className="text-2xl mb-5  text-green-800 font-bold underline ">Let's Get In Touch</h1>
-                            <p className="hover:text-orange-500 focus:underline focus:decoration-orange-400 transition-all text-xl relative" onClick={() => handleNewsletterModalOpen()}>Sign Up For Our newsletter and receive 10% discount</p>
+                            <p className="hover:text-orange-500 focus:underline focus:decoration-orange-400 transition-all text-xl" onClick={() => handleNewsletterModalOpen()}>Sign Up For Our newsletter and receive 10% discount</p>
 
                         </div>
                     </div>
