@@ -12,6 +12,7 @@ const CartSlice = createSlice({
     },
     reducers: {
         addToCart: (state, action) => {
+            CartSlice.caseReducers.resetDiscount(state);
             let copyArray = [...state.cart];
 
             let findIndex = null;
@@ -35,6 +36,7 @@ const CartSlice = createSlice({
             state.cart = copyArray;
         },
         setPriceHandler: (state, action) => {
+            CartSlice.caseReducers.resetDiscount(state);
             const { increment, index } = action.payload;
 
             let copyArray = [...state.cart];
@@ -68,8 +70,18 @@ const CartSlice = createSlice({
         },
         applyCoupon: (state, action) => {
             const currentCoupon = action.payload;
+            if (state.currentCoupon !== currentCoupon) {
+                CartSlice.caseReducers.resetDiscount(state);
+            }
+
             if (state.discountApplied) { return }
             if (currentCoupon === 'green') {
+                state.currentCoupon = currentCoupon;
+                state.discountApplied = true;
+                state.discount = +(state.totalPrice * 0.10).toFixed(2);
+                state.totalPrice = +(state.totalPrice - state.discount).toFixed(2);
+            }
+            else if (currentCoupon === 'zeleni') {
                 state.currentCoupon = currentCoupon;
                 state.discountApplied = true;
                 state.discount = +(state.totalPrice * 0.10).toFixed(2);

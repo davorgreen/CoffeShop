@@ -20,26 +20,28 @@ const Payment = () => {
         CVC: '',
         expirationDate: '',
     });
-    const { totalPrice, discount } = useSelector((state) => state.cartStore);
+    const { totalPrice, currentCoupon } = useSelector((state) => state.cartStore);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     function handleCoupon(e) {
-        console.log(e.target.value)
         setCoupon(e.target.value);
     }
 
     function handleCouponApply() {
-        console.log(coupon)
         dispatch(applyCoupon(coupon));
     }
+
+    useEffect(() => {
+        setCoupon(currentCoupon)
+    }, [])
 
     useEffect(() => {
         setForm(prevForm => ({
             ...prevForm,
             totalPrice: totalPrice,
         }));
-    }, [discount, totalPrice]);
+    }, [totalPrice]);
 
     const handlePaymentMethod = (e) => {
         const selectMethod = e.target.value;
