@@ -25,7 +25,7 @@ function CardComponent({ item, label, handleOpen, handleClose, modalOpen, handle
         <div className="gap-4 mt-10 p-5 md:flex-row justify-center items-center bg-green-200 shadow-2xl rounded-lg overflow-hidden m-4 relative">
             {/* Left side */}
             <div className="flex justify-center items-center">
-                <img src={image_url} alt={name} className="w-80 h-80 object-cover" />
+                <img src={image_url} alt={name} className="w-80 h-96 object-cover" />
             </div>
             {/* Right side */}
             <div className="flex flex-col p-4 gap-2 justify-between text-center items-center h-full" style={{ height: '250px' }}>
