@@ -4,5 +4,15 @@
         "source": "/(.*)",
         "destination": "/"
       }
-    ]
+    ],
+    
+      "redirects": [
+        {
+          "source": "https://coffee-shop-iota-ruddy.vercel.app/",
+          "destination": "https://coffee-shop-six-gold.vercel.app/",
+          "permanent": true
+        }
+      ]
+
+    
   }
