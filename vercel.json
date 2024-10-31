@@ -5,7 +5,6 @@
         "destination": "/"
       }
     ],
-    
       "redirects": [
         {
           "source": "https://coffee-shop-iota-ruddy.vercel.app/",
@@ -13,6 +12,4 @@
           "permanent": true
         }
       ]
-
-    
   }
