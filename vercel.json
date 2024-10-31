@@ -5,11 +5,6 @@
       "destination": "https://coffee-shop-six-gold.vercel.app",
       "permanent": true
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/"
-    }
   ]
+ 
 }
