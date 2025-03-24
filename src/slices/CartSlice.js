@@ -24,12 +24,12 @@ const CartSlice = createSlice({
                 }
             })
             if (findIndex === null) {
-                copyArray.push({ ...action.payload, count: 1, cartTotal: action.payload.price });
+                copyArray.push({ ...action.payload, count: 1, cartTotal: action.payload.sale_price });
                 state.totalPrice = subTotal(copyArray); // Update totalPrice after adding new item
                 state.totalProduct++;
             } else {
                 copyArray[findIndex].count++;
-                copyArray[findIndex].cartTotal = copyArray[findIndex].price * copyArray[findIndex].count;
+                copyArray[findIndex].cartTotal = copyArray[findIndex].sale_price * copyArray[findIndex].count;
                 state.totalPrice = subTotal(copyArray); // Update totalPrice after existing item
             }
 
@@ -40,7 +40,7 @@ const CartSlice = createSlice({
             const { increment, index } = action.payload;
 
             let copyArray = [...state.cart];
-            copyArray[index].cartTotal += copyArray[index].price * increment;
+            copyArray[index].cartTotal += copyArray[index].sale_price * increment;
             copyArray[index].cartTotal = Math.round(copyArray[index].cartTotal * 100) / 100;
 
             // Update total price

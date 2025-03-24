@@ -5,7 +5,7 @@ import { removeProductHandler, setPriceHandler } from '../slices/CartSlice';
 function CartProductComponent({ item, index }) {
     const dispatch = useDispatch()
     const { name,
-        price,
+        sale_price,
         image_url,
         weight,
         count,
@@ -19,10 +19,9 @@ function CartProductComponent({ item, index }) {
 
                 <div className="gap-1 hidden lg:flex flex-col">
                     <h2 className="text-mainBlue font-medium text-xl">{name}</h2>
-                    <p className="text-textColor">{weight}g</p>
                 </div>
             </div>
-            <div>${price}</div>
+            <div>${sale_price}</div>
             <div className="flex items-center">
                 <button className="px-2 py-1 bg-slate-300 text-base" onClick={() => { dispatch(setPriceHandler({ increment: 1, index })) }}>+</button>
                 <span className="px-2 py-1 bg-slate-300 text-base">{count}</span>
